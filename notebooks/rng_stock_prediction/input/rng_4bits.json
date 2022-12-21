@@ -1,0 +1,9 @@
+{
+    "data": {
+        "n_numbers": 10
+    },
+    "params": {
+        "n_bits": 4,
+        "backend": "qasm_simulator"
+    }
+}
