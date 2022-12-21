@@ -2,19 +2,15 @@ package de.stoneone.planqk.samples;
 
 import de.stoneone.planqk.api.ServicePlatformApplicationsApi;
 import de.stoneone.planqk.api.ServicePlatformMarketplaceApi;
-import de.stoneone.planqk.api.ServicePlatformServicesApi;
 import de.stoneone.planqk.api.invoker.ApiClient;
 import de.stoneone.planqk.api.model.ApiDto;
 import de.stoneone.planqk.api.model.ApplicationDto;
-import de.stoneone.planqk.api.model.BuildJobDto;
 import de.stoneone.planqk.api.model.CreateApplicationRequest;
 import de.stoneone.planqk.api.model.CreateSubscriptionRequest;
 import de.stoneone.planqk.api.model.PricingPlanDto;
 import de.stoneone.planqk.api.model.SubscriptionDto;
 import de.stoneone.planqk.samples.feign.CustomDecoder;
 import java.util.List;
-import java.util.UUID;
-import java.util.concurrent.TimeUnit;
 
 /**
  * In this example we assume you either have a published PlanQK Service available in
@@ -73,27 +69,5 @@ public class SubscribeServiceSample {
 
         // Retrieve a list of all active subscriptions of an application
         List<SubscriptionDto> subscriptions = applicationsApi.getApplicationSubscriptions(application.getId(), null);
-    }
-
-    /**
-     * Waits up to 5 minutes till the PlanQK Service has been created, otherwise an exception is thrown.
-     */
-    private static void waitForServiceToBeCreated(ServicePlatformServicesApi serviceApi, UUID serviceId, UUID versionId) throws Exception {
-        int timer = 0;
-        BuildJobDto build;
-        do {
-            TimeUnit.SECONDS.sleep(15);
-
-            // Check build status
-            build = serviceApi.getBuildStatus(serviceId, versionId, null);
-
-            if ((timer += 15) > 300) {
-                throw new RuntimeException("Timeout exceeded waiting for PlanQK Service to be created");
-            }
-        } while (build.getStatus() == BuildJobDto.StatusEnum.WORKING || build.getStatus() == BuildJobDto.StatusEnum.QUEUED);
-
-        if (build.getStatus() == BuildJobDto.StatusEnum.FAILURE) {
-            throw new RuntimeException("Error creating PlanQK Service");
-        }
     }
 }
