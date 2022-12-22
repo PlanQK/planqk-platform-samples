@@ -18,7 +18,7 @@ lifecycle = 'CREATED'
 services = services_api.get_services(lifecycle=lifecycle)
 name = "Your service name"
 
-service = ServiceDto
+service = None
 for x in services:
     if x['name'] == name:
         service = x
