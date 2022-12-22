@@ -64,13 +64,13 @@ version = service.service_definitions[0]
 
 wait_for_service_to_be_created()
 
-# Publish the service for internal use (only you can subscribe to it and, for example, execute PlanQK Jobs with it)
+# Publish the service (will be available in PlanQK Marketplace to all other PlanQK users)
 version = services_api.publish_service(
     service_id=service.id,
     version_id=version.id
 )
 
-# Internally published services are in lifecycle state "PUBLISHED"
+# Published services are in lifecycle state "PUBLISHED"
 if version.lifecycle == "PUBLISHED":
     print("service successfully published".upper(), "\n")
 
