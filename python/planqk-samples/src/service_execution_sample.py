@@ -1,13 +1,12 @@
 import time
 
 import requests
-
 from openapi_client.api_client import ApiClient
 from openapi_client.apis import ServicePlatformApplicationsApi
 from openapi_client.apis import ServicePlatformServicesApi
-from openapi_client.model.create_internal_subscription_request import CreateInternalSubscriptionRequest
-from openapi_client.model.create_application_request import CreateApplicationRequest
 from openapi_client.configuration import Configuration
+from openapi_client.model.create_application_request import CreateApplicationRequest
+from openapi_client.model.create_internal_subscription_request import CreateInternalSubscriptionRequest
 
 
 # Waits up to 5 minutes till the PlanQK Service has been created
@@ -29,6 +28,8 @@ def wait_for_service_to_be_created():
             print("Error creating PlanQK Service".upper())
             break
 
+
+# Waits up to 5 minutes for a PlanQK Service execution to finish.
 def wait_for_execution_to_be_finished():
     status_timer = 0
     execution_status = requests.get(url=status_url, headers=default_headers).json()['status']
