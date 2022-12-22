@@ -69,7 +69,7 @@ wait_for_service_to_be_created()
 
 service = services_api.get_service(id=service.id)
 
-# Update description and related industries
+# Retrieve a list of available industries
 industries = services_api.get_industries()
 # Retrieve 'information_technology' industry from the list
 information_technology = None
@@ -82,7 +82,6 @@ update_version_request = UpdateVersionRequest(
     description="Updated description",
     industries=[information_technology]
 )
-
 version = services_api.update_service_version(
     service_id=service.id,
     version_id=version.id,
@@ -104,6 +103,8 @@ with open('Path to the updated user_code.zip file', 'rb') as updated_user_code:
         version_id=version.id,
         source_code=updated_user_code
     )
+
+wait_for_service_to_be_created()
 
 # Updates the API Definition
 with open('Path to the updated API definition', 'rb') as updated_api_definition:
