@@ -31,13 +31,13 @@ or search for it by name, which is what we show next
 """
 
 # Get all available PlanQK Services
-apis = marketplace_api.find_services()
+services = marketplace_api.find_services()
 service_name = "Published Service"
 
 # Filter the list by name
-for x in apis:
+for x in services:
     if x['name'] == service_name:
-        api = x
+        service = x
 
 """
 Each PlanQK Service has at least one pricing plan.
@@ -45,11 +45,11 @@ You must select a suitable one, either a "free" plan if available of a "paid" pl
 """
 
 # We assume here your selected PlanQK Service provides a "free" plan
-free_plan = api['pricing_plans'][0]
+free_plan = service['pricing_plans'][0]
 
 # Subscribe your application with the published service
 create_subscription_request = CreateSubscriptionRequest(application_id=application.id, pricing_plan_id=free_plan.id)
-marketplace_api.create_subscription(id=api.id, create_subscription_request=create_subscription_request)
+marketplace_api.create_subscription(id=service.id, create_subscription_request=create_subscription_request)
 
 # Retrieve a list of all active subscriptions of an application
 subscriptions = applications_api.get_application_subscriptions(id=application.id)
