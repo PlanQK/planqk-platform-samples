@@ -61,19 +61,18 @@ use_platform_token = "FALSE"  # FALSE to use own backend tokens in case 'quantum
 cpu = 500  # minimum
 memory = 2048  # default memory configuration: 2048 = 2GB
 
-with open('Absolute path to the user_code.zip file', 'rb') \
-        as user_code, open('Absolute path to the OpenAPI definition', 'rb') \
-        as api_definition:
-    service = services_api.create_managed_service(
-        name=name,
-        quantum_backend=quantumBackend,
-        description=description,
-        use_platform_token=use_platform_token,
-        cpu=cpu,
-        memory=memory,
-        user_code=user_code,
-        api_definition=api_definition
-    )
+user_code = open('Absolute path to the user_code.zip file', 'rb')
+api_definition = open('Absolute path to the OpenAPI definition', 'rb')
+service = services_api.create_managed_service(
+    name=name,
+    quantum_backend=quantumBackend,
+    description=description,
+    use_platform_token=use_platform_token,
+    cpu=cpu,
+    memory=memory,
+    user_code=user_code,
+    api_definition=api_definition
+)
 
 """
 A PlanQK Service consists of a list of ServiceDefinitionDto objects. A service definition represents a certain version of a

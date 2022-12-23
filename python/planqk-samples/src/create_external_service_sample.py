@@ -21,14 +21,14 @@ quantumBackend = "NONE"  # Default value
 name = "Your service name"
 production_endpoint = "Your public endpoint URL"
 description = "Your service description"
-with open("Absolute path to your OpenAPI definition", 'rb') as api_definition:
-    service = service_api.create_external_service(
-        name=name,
-        url=production_endpoint,
-        quantum_backend=quantumBackend,
-        description=description,
-        api_definition=api_definition
-    )
+api_definition = open("Absolute path to your OpenAPI definition", 'rb')
+service = service_api.create_external_service(
+    name=name,
+    url=production_endpoint,
+    quantum_backend=quantumBackend,
+    description=description,
+    api_definition=api_definition
+)
 
 """
 A PlanQK Service consists of a list of ServiceDefinitionDto objects. A service definition represents a certain version of a
