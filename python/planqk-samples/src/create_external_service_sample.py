@@ -22,6 +22,7 @@ name = "Your service name"
 production_endpoint = "Your public endpoint URL"
 description = "Your service description"
 api_definition = open("Absolute path to your OpenAPI definition", 'rb')
+
 service = service_api.create_external_service(
     name=name,
     url=production_endpoint,

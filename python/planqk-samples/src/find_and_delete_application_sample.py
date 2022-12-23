@@ -10,12 +10,11 @@ configuration = Configuration(api_key=api_key)
 api_client = ApiClient(configuration=configuration)
 applications_api = ServicePlatformApplicationsApi(api_client=api_client)
 
-name = 'My Application'
-
 # Either use "get_application(...)" to look-up by id, or search for it by name, which is what we show next
 applications = applications_api.get_applications()
 
 found_application = None
+name = 'My Application'
 
 # Filter the list by name
 for application in applications:

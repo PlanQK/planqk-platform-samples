@@ -46,9 +46,9 @@ description = "Your service description"
 use_platform_token = "FALSE"  # FALSE to use own backend tokens in case 'quantumBackend' is 'DWAVE', 'IBM' etc.
 cpu = 500  # minimum
 memory = 2048  # default memory configuration: 2048 = 2GB
-
 user_code = open('Absolute path to the user_code.zip file', 'rb')
 api_definition = open('Absolute path to the OpenAPI definition', 'rb')
+
 service = services_api.create_managed_service(
     name=name,
     quantum_backend=quantumBackend,

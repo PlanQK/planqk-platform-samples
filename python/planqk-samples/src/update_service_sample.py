@@ -98,19 +98,11 @@ version = services_api.update_service_version(
 )
 
 # Updates the source code of the service
-with open('Path to the updated user_code.zip file', 'rb') as updated_user_code:
-    services_api.update_source_code(
-        service_id=service.id,
-        version_id=version.id,
-        source_code=updated_user_code
-    )
+updated_user_code = open('Path to the updated user_code.zip file', 'rb')
+services_api.update_source_code(service_id=service.id, version_id=version.id, source_code=updated_user_code)
 
 wait_for_service_to_be_created()
 
 # Updates the API Definition
-with open('Path to the updated API definition', 'rb') as updated_api_definition:
-    services_api.update_api_definition(
-        service_id=service.id,
-        version_id=version.id,
-        file=updated_api_definition
-    )
+updated_api_definition = open('Path to the updated API definition', 'rb')
+services_api.update_api_definition(service_id=service.id, version_id=version.id, file=updated_api_definition)

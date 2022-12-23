@@ -40,9 +40,9 @@ description = "Your service description"
 use_platform_token = "FALSE"  # FALSE to use own backend tokens in case 'quantumBackend' is 'DWAVE', 'IBM' etc.
 cpu = 500  # minimum
 memory = 2048  # default memory configuration: 2048 = 2GB
-
 user_code = open('Absolute path to the user_code.zip file', 'rb')
 api_definition = open('Absolute path to the OpenAPI definition', 'rb')
+
 service = services_api.create_managed_service(
     name=name,
     quantum_backend=quantumBackend,
@@ -64,14 +64,11 @@ version = service.service_definitions[0]
 wait_for_service_to_be_created()
 
 # Publish the service (will be available in PlanQK Marketplace to all other PlanQK users)
-version = services_api.publish_service(
-    service_id=service.id,
-    version_id=version.id
-)
+version = services_api.publish_service(service_id=service.id, version_id=version.id)
 
 # Published services are in lifecycle state "PUBLISHED"
 if version.lifecycle == "PUBLISHED":
-    print("service successfully published".upper(), "\n")
+    print("service successfully published")
 
 # You may unpublish the service afterwards
 # services_api.unpublish_service(service_id=service.id, version_id=version.id)

@@ -49,9 +49,9 @@ description = "Your service description"
 use_platform_token = "FALSE"  # FALSE to use own backend tokens in case 'quantumBackend' is 'DWAVE', 'IBM' etc.
 cpu = 500  # minimum
 memory = 2048  # default memory configuration: 2048 = 2GB
-
 user_code = open('Absolute path to the user_code.zip file', 'rb')
 api_definition = open('Absolute path to the OpenAPI definition', 'rb')
+
 service = services_api.create_managed_service(
     name=name,
     quantum_backend=quantumBackend,
@@ -81,13 +81,10 @@ version = services_api.publish_service_internal(
 
 # Internally published services are in lifecycle state "ACCESSIBLE"
 if version.lifecycle == "ACCESSIBLE":
-    print("service successfully published".upper(), "\n")
+    print("service successfully published")
 
 # Create a PlanQK Application
-create_app_request = CreateApplicationRequest(
-    name="My Application",
-)
-
+create_app_request = CreateApplicationRequest(name="My Application")
 application = applications_api.create_application(
     create_application_request=create_app_request,
     x_organization_id=organization_id

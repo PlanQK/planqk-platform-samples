@@ -13,5 +13,7 @@ application_api = ServicePlatformApplicationsApi(api_client=api_client)
 
 application_name = "My Application"
 create_app_request = CreateApplicationRequest(name=application_name)
+
 application = application_api.create_application(create_app_request)
+
 application = application_api.get_application(application.id)

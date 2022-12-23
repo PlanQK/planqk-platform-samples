@@ -14,9 +14,10 @@ services_api = ServicePlatformServicesApi(api_client=api_client)
 # Either use "get_service(...)" to look-up by id, or search for it by name, which is what we show next
 lifecycle = 'CREATED'
 services = services_api.get_services(lifecycle=lifecycle)
-name = "My service name"
 
 found_service = None
+name = "My service name"
+
 # Filter the list by name
 for service in services:
     if service['name'] == name:

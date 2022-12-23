@@ -32,12 +32,14 @@ or search for it by name, which is what we show next
 
 # Get all available PlanQK Services
 services = marketplace_api.find_services()
-service_name = "Published Service"
+
+found_service = None
+name = "My Service Name"
 
 # Filter the list by name
-for x in services:
-    if x['name'] == service_name:
-        service = x
+for service in services:
+    if service['name'] == name:
+        found_service = service
 
 """
 Each PlanQK Service has at least one pricing plan.
