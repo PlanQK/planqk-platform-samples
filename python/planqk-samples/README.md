@@ -1,15 +1,15 @@
-# PlanQK Platform Sample for Java
+# PlanQK Platform Sample for Python
 
-This repository contains several examples showing how to use Java and PlanQK's API client to interact with the platform.
+This repository contains several examples showing how to use Python and PlanQK's API client to interact with the platform.
 
 ## Build the project
 
 ```bash
-mvn clean package
+
 ```
 
 ## Run the examples
 
 ```bash
-mvn compile exec:java -pl app -Dexec.mainClass="de.stoneone.planqk.samples.AuthenticationSample"
+
 ```
