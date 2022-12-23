@@ -1,0 +1,4 @@
+name: planqk-samples
+dependencies:
+  - python>=3.6,<3.10
+  - pip>=21
