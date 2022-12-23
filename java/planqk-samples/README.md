@@ -5,7 +5,7 @@ This repository contains several examples showing how to use Java and PlanQK's A
 ## Build the project
 
 ```bash
-mvn clean package
+mvn clean install
 ```
 
 ## Run the examples
