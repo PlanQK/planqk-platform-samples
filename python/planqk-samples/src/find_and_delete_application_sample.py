@@ -4,7 +4,7 @@ from openapi_client.configuration import Configuration
 
 # Pass dict with token as value to Configuration
 api_key = {'apiKey': 'Your personal access token'}
-configuration = Configuration()
+configuration = Configuration(api_key=api_key)
 
 # Pass config to ApiClient
 api_client = ApiClient(configuration=configuration)

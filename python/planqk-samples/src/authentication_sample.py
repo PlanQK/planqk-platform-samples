@@ -10,5 +10,5 @@ configuration = Configuration(api_key=api_key)
 api_client = ApiClient(configuration=configuration)
 service_api = ServicePlatformServicesApi(api_client=api_client)
 
-lifecycle = "ACCESSIBLE"
+lifecycle = "CREATED"
 service_api.get_services(lifecycle=lifecycle)
