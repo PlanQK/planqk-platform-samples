@@ -130,15 +130,15 @@ description):
 """
 
 # Prepare input file containing the "data" and "params" JSON structure:
-with open("Absolute path to your input file, e.g., 'input.json'", 'rb') as input_data:
-    # Prepare the HTTP payload to trigger an execution
-    service_endpoint = version.gateway_endpoint
-    default_headers = {
-        "Authorization": f"Bearer {access_token}",
-        'Content-Type': 'application/json'
-    }
-    # Execute the service
-    execution = requests.post(url=service_endpoint, data=input_data, headers=default_headers)
+input_data = open("Absolute path to your input file, e.g., 'input.json'", 'rb')
+# Prepare the HTTP payload to trigger an execution
+service_endpoint = version.gateway_endpoint
+default_headers = {
+    "Authorization": f"Bearer {access_token}",
+    'Content-Type': 'application/json'
+}
+# Execute the service
+execution = requests.post(url=service_endpoint, data=input_data, headers=default_headers)
 
 execution_id = ""  # id for the current execution
 if execution.status_code in (200, 201):
