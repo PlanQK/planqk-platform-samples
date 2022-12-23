@@ -14,13 +14,13 @@ services_api = ServicePlatformServicesApi(api_client=api_client)
 # Either use "get_service(...)" to look-up by id, or search for it by name, which is what we show next
 lifecycle = 'CREATED'
 services = services_api.get_services(lifecycle=lifecycle)
-name = "Your service name"
+name = "My service name"
 
-service = None
+found_service = None
 # Filter the list by name
-for x in services:
-    if x['My Service Name'] == name:
-        service = x
+for service in services:
+    if service['name'] == name:
+        found_service = service
 
 # You can delete the service after you finish
-services_api.delete_service(service.id)
+services_api.delete_service(found_service.id)

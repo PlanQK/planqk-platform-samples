@@ -14,12 +14,13 @@ name = 'My Application'
 
 # Either use "get_application(...)" to look-up by id, or search for it by name, which is what we show next
 applications = applications_api.get_applications()
-application = None
+
+found_application = None
 
 # Filter the list by name
-for x in applications:
-    if x['name'] == name:
-        application = x
+for application in applications:
+    if application['name'] == name:
+        found_application = application
 
 # Deletes application, if found
-applications_api.delete_application(application.id)
+applications_api.delete_application(found_application.id)

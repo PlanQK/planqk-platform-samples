@@ -73,9 +73,11 @@ service = services_api.get_service(id=service.id)
 industries = services_api.get_industries()
 # Retrieve 'information_technology' industry from the list
 information_technology = None
-for x in industries:
-    if x['name'] == 'information_technology':
-        information_technology = IndustryDto(id=x['id'], name=x['name'])
+industry_name = 'information_technology'
+
+for industry in industries:
+    if industry['name'] == industry_name:
+        information_technology = IndustryDto(id=industry['id'], name=industry['name'])
 
 # Create the update request payload
 update_version_request = UpdateVersionRequest(
