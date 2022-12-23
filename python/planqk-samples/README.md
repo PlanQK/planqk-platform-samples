@@ -32,6 +32,8 @@ mkdir generator-output && cd generator-output
 
 openapi-generator-cli version-manager set 5.4.0
 openapi-generator-cli generate -g python -i https://platform.planqk.de/qc-catalog/v3/api-docs
+
+# you have to copy the 'openapi_client' to your 'src' directory
 cp -R openapi_client ../src
 ```
 
