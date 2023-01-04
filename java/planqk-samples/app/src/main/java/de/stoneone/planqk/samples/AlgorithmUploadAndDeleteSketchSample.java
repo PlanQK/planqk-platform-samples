@@ -7,7 +7,7 @@ import de.stoneone.planqk.api.model.SketchDto;
 import java.io.File;
 import java.io.IOException;
 
-public class AlgorithmUploadSketchSample {
+public class AlgorithmUploadAndDeleteSketchSample {
 
     public static void main(String[] args) throws IOException {
         String token = "Your personal access token";
@@ -15,9 +15,13 @@ public class AlgorithmUploadSketchSample {
 
         CommunityAlgorithmsApi algorithmApi = apiClient.buildClient(CommunityAlgorithmsApi.class);
 
+        // Required attributes to create an algorithm
+        String name = "My Algorithm";
+        AlgorithmDto.ComputationModelEnum computationModel = AlgorithmDto.ComputationModelEnum.CLASSIC;
+
         AlgorithmDto payload = new AlgorithmDto()
-            .name("My Algorithm")  // required
-            .computationModel(AlgorithmDto.ComputationModelEnum.CLASSIC);  // required
+            .name(name)
+            .computationModel(computationModel);
         AlgorithmDto algorithm = algorithmApi.createAlgorithm(payload);
 
         algorithm = algorithmApi.getAlgorithm(algorithm.getId());
@@ -31,5 +35,8 @@ public class AlgorithmUploadSketchSample {
         sketch = algorithmApi.getSketch(algorithm.getId(), sketch.getId());
 
         byte[] sketchImage = algorithmApi.getSketchImage(algorithm.getId(), sketch.getId());
+
+        //Deletes sketch
+        algorithmApi.deleteSketch(algorithm.getId(), sketch.getId());
     }
 }

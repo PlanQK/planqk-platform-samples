@@ -12,9 +12,13 @@ public class AlgorithmCreateSample {
 
         CommunityAlgorithmsApi algorithmApi = apiClient.buildClient(CommunityAlgorithmsApi.class);
 
+        // Required attributes to create an algorithm
+        String name = "My Algorithm";
+        AlgorithmDto.ComputationModelEnum computationModel = AlgorithmDto.ComputationModelEnum.CLASSIC;
+
         AlgorithmDto payload = new AlgorithmDto()
-            .name("My Algorithm")  // required
-            .computationModel(AlgorithmDto.ComputationModelEnum.CLASSIC);  // required
+            .name(name)
+            .computationModel(computationModel);
         AlgorithmDto algorithm = algorithmApi.createAlgorithm(payload);
 
         algorithm = algorithmApi.getAlgorithm(algorithm.getId());

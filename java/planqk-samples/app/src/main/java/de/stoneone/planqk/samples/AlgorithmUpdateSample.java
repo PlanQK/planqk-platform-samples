@@ -3,10 +3,7 @@ package de.stoneone.planqk.samples;
 import de.stoneone.planqk.api.CommunityAlgorithmsApi;
 import de.stoneone.planqk.api.invoker.ApiClient;
 import de.stoneone.planqk.api.model.AlgorithmDto;
-import de.stoneone.planqk.api.model.TaxonomyElement;
 import de.stoneone.planqk.api.model.UpdateAlgorithmRequest;
-import java.util.ArrayList;
-import java.util.List;
 
 public class AlgorithmUpdateSample {
 
@@ -16,51 +13,48 @@ public class AlgorithmUpdateSample {
 
         CommunityAlgorithmsApi algorithmApi = apiClient.buildClient(CommunityAlgorithmsApi.class);
 
+        // Required attributes to create an algorithm
+        String name = "My Algorithm";
+        AlgorithmDto.ComputationModelEnum computationModel = AlgorithmDto.ComputationModelEnum.CLASSIC;
+
         AlgorithmDto payload = new AlgorithmDto()
-            .name("My Algorithm")  // required
-            .computationModel(AlgorithmDto.ComputationModelEnum.CLASSIC);  // required
+            .name(name)
+            .computationModel(computationModel);
         AlgorithmDto algorithm = algorithmApi.createAlgorithm(payload);
 
         algorithm = algorithmApi.getAlgorithm(algorithm.getId());
 
-        // Retrieve a list of available problem types
-        List<TaxonomyElement> problemTypes = algorithmApi.getProblemTypes();
-
-        // Retrieve Artificial Intelligence Problem from the list
-        TaxonomyElement artificialIntelligenceProblem = problemTypes.stream()
-            .filter(problemType -> "Artificial Intelligence Problem".equalsIgnoreCase(problemType.getLabel()))
-            .findFirst()
-            .orElseThrow();
-
         /*
-         * Problem types have children or sub-categories e.g.
-         * Natural language processing is a child of Artificial Intelligence Problem
-         * Below we show how to retrieve Natural language processing from the list
+         * Updates several attributes of the algorithm
          */
-        TaxonomyElement naturalLanguageProcessing = null;
-        naturalLanguageProcessing = problemTypes.stream()
-            .flatMap(problemType -> problemType.getChildren().stream())
-            .filter(c -> "Natural language processing".equalsIgnoreCase(c.getLabel()))
-            .findFirst()
-            .orElseThrow();
-
-        List<String> problemTypeUuids = new ArrayList<>();
-        problemTypeUuids.add(artificialIntelligenceProblem.getUuid());
-        problemTypeUuids.add(naturalLanguageProcessing.getUuid());
-
-        /*
-         * Updates name, computationModel and adds a problem type to the algorithm
-         */
+        name = "Updated algorithm name";
+        UpdateAlgorithmRequest.ComputationModelEnum updatedComputationModel = UpdateAlgorithmRequest.ComputationModelEnum.HYBRID;
+        String acronym = "ALG";
+        String intent = "algorithm intent";
+        String problem = "algorithm problem";
+        String algoParameter = "algorithm parameters";
+        String inputFormat = "algorithm input format";
+        String outputFormat = "algorithm output format";
+        String solution = "algorithm solution";
+        String assumptions = "algorithm assumptions";
+        Boolean nisqReady = true;
+        String speedUp = "unknown";
 
         // Create the update request payload
         UpdateAlgorithmRequest updateAlgorithmRequest = new UpdateAlgorithmRequest()
-            .name("Updated algorithm name")
-            .computationModel(UpdateAlgorithmRequest.ComputationModelEnum.HYBRID)
-            .problemTypeUuids(problemTypeUuids);
-        algorithm = algorithmApi.updateAlgorithm(algorithm.getId(), updateAlgorithmRequest);
+            .name(name)
+            .computationModel(updatedComputationModel)
+            .acronym(acronym)
+            .intent(intent)
+            .problem(problem)
+            .algoParameter(algoParameter)
+            .inputFormat(inputFormat)
+            .outputFormat(outputFormat)
+            .solution(solution)
+            .assumptions(assumptions)
+            .nisqReady(nisqReady)
+            .speedUp(speedUp);
 
-        //Remove all assigned problem types
-        updateAlgorithmRequest.problemTypeUuids(new ArrayList<>());
         algorithm = algorithmApi.updateAlgorithm(algorithm.getId(), updateAlgorithmRequest);
 
     }
