@@ -11,7 +11,8 @@ configuration = Configuration(api_key=api_key)
 api_client = ApiClient(configuration=configuration)
 algorithm_api = CommunityAlgorithmsApi(api_client=api_client)
 
-algorithm_dto = AlgorithmDto(id="", name="My Algorithm", computation_model="CLASSIC")  # required
+# Required attributes to create an algorithm
+algorithm_dto = AlgorithmDto(id="", name="My Algorithm", computation_model="CLASSIC")
 algorithm = algorithm_api.create_algorithm(algorithm_dto)
 
 algorithm = algorithm_api.get_algorithm(algorithm.id)
@@ -29,3 +30,6 @@ with open("Absolute path to the file", 'rb') as file:
 
 sketch = algorithm_api.get_sketch(algorithm_id=algorithm.id, sketch_id=sketch.id)
 sketch_image = algorithm_api.get_sketch_image(algorithm_id=algorithm.id, sketch_id=sketch.id)
+
+# Deletes sketch
+algorithm_api.delete_sketch(algorithm_id=algorithm.id, sketch_id=sketch.id)

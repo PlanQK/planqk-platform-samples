@@ -11,7 +11,8 @@ configuration = Configuration(api_key=api_key)
 api_client = ApiClient(configuration=configuration)
 algorithm_api = CommunityAlgorithmsApi(api_client=api_client)
 
-algorithm_dto = AlgorithmDto(id="", name="My Algorithm", computation_model="CLASSIC")  # required
+# Required attributes to create an algorithm
+algorithm_dto = AlgorithmDto(id="", name="My Algorithm", computation_model="CLASSIC")
 algorithm = algorithm_api.create_algorithm(algorithm_dto)
 
 algorithm = algorithm_api.get_algorithm(algorithm.id)
