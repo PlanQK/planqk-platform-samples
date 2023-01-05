@@ -38,7 +38,7 @@ public class AlgorithmAddAndDeleteApplicationAreasSample {
 
         /*
          * Application areas have children or sub-categories e.g.
-         * Civil Engineering is a child of Engineering Science
+         * Civil Engineering is a child of Engineering Science.
          * Below we show how to Civil Engineering from the list
          */
         TaxonomyElement civilEngineering = applicationAreas.stream()

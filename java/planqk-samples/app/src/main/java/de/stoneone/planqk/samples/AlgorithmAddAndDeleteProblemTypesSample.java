@@ -38,7 +38,7 @@ public class AlgorithmAddAndDeleteProblemTypesSample {
 
         /*
          * Problem types have children or sub-categories e.g.
-         * Natural language processing is a child of Artificial Intelligence Problem
+         * Natural language processing is a child of Artificial Intelligence Problem.
          * Below we show how to retrieve Natural language processing from the list
          */
         TaxonomyElement naturalLanguageProcessing = problemTypes.stream()
