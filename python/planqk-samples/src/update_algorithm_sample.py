@@ -12,38 +12,43 @@ configuration = Configuration(api_key=api_key)
 api_client = ApiClient(configuration=configuration)
 algorithm_api = CommunityAlgorithmsApi(api_client=api_client)
 
-algorithm_dto = AlgorithmDto(id="", name="My Algorithm", computation_model="CLASSIC")  # required
+# Required attributes to create an algorithm
+algorithm_dto = AlgorithmDto(id="", name="My Algorithm", computation_model="CLASSIC")
 algorithm = algorithm_api.create_algorithm(algorithm_dto)
 
 algorithm = algorithm_api.get_algorithm(algorithm.id)
 
-# Retrieve a list of available problem types
-problem_types = algorithm_api.get_problem_types()
-
-# Retrieve Artificial Intelligence Problem from the list
-problem_type_name = "Artificial Intelligence Problem"
-artificial_intelligence_problem = None
-for problem_type in problem_types:
-    if problem_type['label'] == problem_type_name:
-        artificial_intelligence_problem = problem_type
-
 """
-Updates name, computationModel and adds a problem type to the algorithm
+Updates several attributes of the algorithm
 """
+
+name = "Updated algorithm name"
+acronym = "ALG"
+intent = "intent_example"
+problem = "problem_example"
+input_format = "input_format_example"
+algo_parameter = "algo_parameter_example"
+output_format = "output_format_example"
+solution = "solution_example"
+assumptions = "assumptions_example"
+computation_model = "HYBRID"
+speed_up = "unknown"
+nisq_ready = True
+
 # Create the update request payload
 update_algorithm_request = UpdateAlgorithmRequest(
     id=algorithm.id,
-    name="updated algorithm name",
-    computation_model="HYBRID",
-    problem_type_uuids=[artificial_intelligence_problem.uuid]
-)
-algorithm = algorithm_api.update_algorithm(algorithm_id=algorithm.id, update_algorithm_request=update_algorithm_request)
-
-# Remove all assigned problem types
-update_algorithm_request = UpdateAlgorithmRequest(
-    id=algorithm.id,
-    name=algorithm.name,
-    computation_model=algorithm.computation_model,
-    problem_type_uuids=[]
+    computation_model=computation_model,
+    name=name,
+    acronym=acronym,
+    intent=intent,
+    problem=problem,
+    solution=solution,
+    input_format=input_format,
+    algo_parameter=algo_parameter,
+    output_format=output_format,
+    assumptions=assumptions,
+    nisq_ready=nisq_ready,
+    speed_up=speed_up
 )
 algorithm = algorithm_api.update_algorithm(algorithm_id=algorithm.id, update_algorithm_request=update_algorithm_request)
