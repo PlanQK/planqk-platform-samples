@@ -40,7 +40,7 @@ public class AlgorithmAddQuantumComputationModelSample {
         quantumComputationModelsUuids.add(quantumAnnealing.getUuid());
 
         /*
-         * Adds quantum computation models to the algorithm
+         * Updates the algorithm and adds quantum computation models to it
          */
 
         // Create the update request payload
@@ -50,9 +50,11 @@ public class AlgorithmAddQuantumComputationModelSample {
             .quantumComputationModelUuids(quantumComputationModelsUuids);
         algorithm = algorithmApi.updateAlgorithm(algorithm.getId(), updateAlgorithmRequest);
 
-        //Remove all assigned quantum computation models
-        updateAlgorithmRequest.quantumComputationModelUuids(new ArrayList<>());
-        algorithm = algorithmApi.updateAlgorithm(algorithm.getId(), updateAlgorithmRequest);
+        /*
+        Remove all assigned quantum computation models
+         updateAlgorithmRequest.quantumComputationModelUuids(new ArrayList<>());
+         algorithm = algorithmApi.updateAlgorithm(algorithm.getId(), updateAlgorithmRequest);
+        */
 
     }
 }
