@@ -40,7 +40,7 @@ algorithm = algorithm_api.update_algorithm(
     update_algorithm_request=update_algorithm_request
 )
 
-# Remove all assigned application areas
+# Remove all assigned learning methods
 update_algorithm_request = UpdateAlgorithmRequest(
     id=algorithm.id,
     name=algorithm.name,
