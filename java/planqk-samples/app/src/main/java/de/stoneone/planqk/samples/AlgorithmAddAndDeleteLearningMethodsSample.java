@@ -40,7 +40,7 @@ public class AlgorithmAddAndDeleteLearningMethodsSample {
         learningMethodUuids.add(supervisedLearning.getUuid());
 
         /*
-         * Adds a learning method to the algorithm
+         * Updates the algorithm and adds a learning method to it
          */
 
         // Create the update request payload

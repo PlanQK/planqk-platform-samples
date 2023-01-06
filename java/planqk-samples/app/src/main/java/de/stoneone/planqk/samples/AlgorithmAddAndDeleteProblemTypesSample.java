@@ -52,7 +52,7 @@ public class AlgorithmAddAndDeleteProblemTypesSample {
         problemTypeUuids.add(naturalLanguageProcessing.getUuid());
 
         /*
-         * Adds problem types to the algorithm
+         * Updates the algorithm and adds problem types to it
          */
 
         // Create the update request payload

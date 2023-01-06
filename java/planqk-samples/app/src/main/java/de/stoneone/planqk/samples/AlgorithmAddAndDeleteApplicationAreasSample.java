@@ -52,7 +52,7 @@ public class AlgorithmAddAndDeleteApplicationAreasSample {
         applicationAreasUuids.add(civilEngineering.getUuid());
 
         /*
-         * Adds application areas to the algorithm
+         * Updates the algorithm and adds application areas to it
          */
 
         // Create the update request payload

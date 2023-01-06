@@ -34,8 +34,9 @@ problem_type_children_name = "Natural language processing"
 natural_language_processing = [pt for pt in problem_types[0].children if pt.label == problem_type_children_name]
 
 """
-Adds problem types to the algorithm
+Updates the algorithm and adds problem types to it
 """
+
 # Create the update request payload
 update_algorithm_request = UpdateAlgorithmRequest(
     id=algorithm.id,

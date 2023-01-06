@@ -17,23 +17,15 @@ algorithm_dto = AlgorithmDto(id="", name="My Algorithm", computation_model="CLAS
 algorithm = algorithm_api.create_algorithm(algorithm_dto)
 algorithm = algorithm_api.get_algorithm(algorithm.id)
 
-# Retrieve a list of available application areas
-application_areas = algorithm_api.get_application_areas()
+# Retrieve a list of available learning methods
+learning_methods = algorithm_api.get_learning_methods()
 
-# Retrieve Engineering Science from the list
-application_area_name = "Engineering Science"
-engineering_science = [area for area in application_areas if area.label == application_area_name]
-
-"""
-Application areas have children or sub-categories e.g.
-Civil Engineering is a child of Engineering Science.
-Below we show how to Civil Engineering from the list
-"""
-application_area_children_name = "Civil Engineering"
-civil_engineering = [a for a in application_areas[0].children if a.label == application_area_children_name]
+# Retrieve Supervised Learning from the list
+learning_method_name = "Supervised Learning"
+supervised_learning = [lm for lm in learning_methods if lm.label == learning_method_name]
 
 """
-Updates the algorithm and adds application areas to it
+Updates the algorithm and adds a learning method to it
 """
 
 # Create the update request payload
@@ -41,7 +33,7 @@ update_algorithm_request = UpdateAlgorithmRequest(
     id=algorithm.id,
     name="updated algorithm's name",
     computation_model="HYBRID",
-    application_area_uuids=[engineering_science[0].uuid, civil_engineering[0].uuid]
+    learning_method_uuids=[supervised_learning[0].uuid]
 )
 algorithm = algorithm_api.update_algorithm(
     algorithm_id=algorithm.id,
@@ -53,7 +45,7 @@ update_algorithm_request = UpdateAlgorithmRequest(
     id=algorithm.id,
     name=algorithm.name,
     computation_model=algorithm.computation_model,
-    application_area_uuids=[]
+    learning_method_uuids=[]
 )
 algorithm = algorithm_api.update_algorithm(
     algorithm_id=algorithm.id,
