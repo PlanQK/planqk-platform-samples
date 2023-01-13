@@ -40,7 +40,7 @@ public class AlgorithmAddQuantumComputationModelSample {
             .orElseThrow();
 
         /*
-         * Adds quantum computation models to the algorithm
+         * Updates the algorithm and adds quantum computation models to it.
          */
 
         // Create the update request payload
