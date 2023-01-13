@@ -1,15 +1,17 @@
 package de.stoneone.planqk.samples;
 
 import de.stoneone.planqk.api.ServicePlatformServicesApi;
+import de.stoneone.planqk.api.TaxonomiesApi;
 import de.stoneone.planqk.api.invoker.ApiClient;
 import de.stoneone.planqk.api.model.BuildJobDto;
-import de.stoneone.planqk.api.model.IndustryDto;
 import de.stoneone.planqk.api.model.ServiceDefinitionDto;
 import de.stoneone.planqk.api.model.ServiceDto;
+import de.stoneone.planqk.api.model.TaxonomyElement;
 import de.stoneone.planqk.api.model.UpdateVersionRequest;
 import de.stoneone.planqk.samples.feign.CustomDecoder;
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.UUID;
 import java.util.concurrent.TimeUnit;
@@ -22,6 +24,7 @@ public class ServiceUpdateSample {
         apiClient.setFeignBuilder(apiClient.getFeignBuilder().decoder(new CustomDecoder(apiClient.getObjectMapper())));
 
         ServicePlatformServicesApi servicesApi = apiClient.buildClient(ServicePlatformServicesApi.class);
+        TaxonomiesApi taxonomiesApi = apiClient.buildClient(TaxonomiesApi.class);
 
         String serviceName = "Your service name";
         String quantumBackend = "NONE";
@@ -57,24 +60,23 @@ public class ServiceUpdateSample {
          * Update description and related industries
          */
         // Retrieve a list of available industries
-        List<IndustryDto> industries = servicesApi.getIndustries();
+        List<TaxonomyElement> industries = taxonomiesApi.getIndustries();
 
-        // Retrieve 'information_technology' industry from the list
-        IndustryDto informationTechnology = industries.stream()
-            .filter(industry -> "information_technology".equals(industry.getName()))
+        // Retrieve 'Information Technology' industry from the list
+        TaxonomyElement informationTechnology = industries.stream()
+            .filter(industry -> "Information Technology".equals(industry.getLabel()))
             .findFirst()
             .orElseThrow();
 
         // Create the update request payload
         UpdateVersionRequest updateRequest = new UpdateVersionRequest()
             .description("Updated description")
-            .addIndustriesItem(new IndustryDto().id(informationTechnology.getId()));
+            .industryUuids(Collections.singletonList(informationTechnology.getUuid()));
 
         version = servicesApi.updateServiceVersion(service.getId(), version.getId(), updateRequest, null);
 
         // Remove all assigned industries
-        updateRequest = new UpdateVersionRequest();
-        updateRequest.setIndustries(new ArrayList<>());
+        updateRequest = new UpdateVersionRequest().industryUuids(new ArrayList<>());
         version = servicesApi.updateServiceVersion(service.getId(), version.getId(), updateRequest, null);
 
         /*

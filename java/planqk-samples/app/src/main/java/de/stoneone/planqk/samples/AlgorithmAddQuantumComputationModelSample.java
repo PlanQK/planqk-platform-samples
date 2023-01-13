@@ -1,11 +1,13 @@
 package de.stoneone.planqk.samples;
 
 import de.stoneone.planqk.api.CommunityAlgorithmsApi;
+import de.stoneone.planqk.api.TaxonomiesApi;
 import de.stoneone.planqk.api.invoker.ApiClient;
 import de.stoneone.planqk.api.model.AlgorithmDto;
 import de.stoneone.planqk.api.model.TaxonomyElement;
 import de.stoneone.planqk.api.model.UpdateAlgorithmRequest;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AlgorithmAddQuantumComputationModelSample {
@@ -15,6 +17,7 @@ public class AlgorithmAddQuantumComputationModelSample {
         ApiClient apiClient = new ApiClient("apiKey", token);
 
         CommunityAlgorithmsApi algorithmApi = apiClient.buildClient(CommunityAlgorithmsApi.class);
+        TaxonomiesApi taxonomiesApi = apiClient.buildClient(TaxonomiesApi.class);
 
         // Required attributes to create an algorithm
         String name = "My Algorithm";
@@ -28,7 +31,7 @@ public class AlgorithmAddQuantumComputationModelSample {
         algorithm = algorithmApi.getAlgorithm(algorithm.getId());
 
         // Retrieve a list of available quantum computation models
-        List<TaxonomyElement> quantumComputationModels = algorithmApi.getQuantumComputationModels();
+        List<TaxonomyElement> quantumComputationModels = taxonomiesApi.getQuantumComputationModels();
 
         // Retrieve Quantum Annealing from the list
         TaxonomyElement quantumAnnealing = quantumComputationModels.stream()
@@ -36,25 +39,20 @@ public class AlgorithmAddQuantumComputationModelSample {
             .findFirst()
             .orElseThrow();
 
-        List<String> quantumComputationModelsUuids = new ArrayList<>();
-        quantumComputationModelsUuids.add(quantumAnnealing.getUuid());
-
         /*
-         * Updates the algorithm and adds quantum computation models to it
+         * Adds quantum computation models to the algorithm
          */
 
         // Create the update request payload
         UpdateAlgorithmRequest updateAlgorithmRequest = new UpdateAlgorithmRequest()
             .name(name)
             .computationModel(UpdateAlgorithmRequest.ComputationModelEnum.QUANTUM)
-            .quantumComputationModelUuids(quantumComputationModelsUuids);
+            .quantumComputationModelUuids(Collections.singletonList(quantumAnnealing.getUuid()));
         algorithm = algorithmApi.updateAlgorithm(algorithm.getId(), updateAlgorithmRequest);
 
-        /*
-        Remove all assigned quantum computation models
-         updateAlgorithmRequest.quantumComputationModelUuids(new ArrayList<>());
-         algorithm = algorithmApi.updateAlgorithm(algorithm.getId(), updateAlgorithmRequest);
-        */
+        //Remove all assigned quantum computation models
+        updateAlgorithmRequest.quantumComputationModelUuids(new ArrayList<>());
+        algorithm = algorithmApi.updateAlgorithm(algorithm.getId(), updateAlgorithmRequest);
 
     }
 }

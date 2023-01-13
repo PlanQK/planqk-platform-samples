@@ -1,6 +1,7 @@
 package de.stoneone.planqk.samples;
 
 import de.stoneone.planqk.api.CommunityAlgorithmsApi;
+import de.stoneone.planqk.api.TaxonomiesApi;
 import de.stoneone.planqk.api.invoker.ApiClient;
 import de.stoneone.planqk.api.model.AlgorithmDto;
 import de.stoneone.planqk.api.model.TaxonomyElement;
@@ -15,6 +16,7 @@ public class AlgorithmAddAndDeleteApplicationAreasSample {
         ApiClient apiClient = new ApiClient("apiKey", token);
 
         CommunityAlgorithmsApi algorithmApi = apiClient.buildClient(CommunityAlgorithmsApi.class);
+        TaxonomiesApi taxonomiesApi = apiClient.buildClient(TaxonomiesApi.class);
 
         // Required attributes to create an algorithm
         String name = "My Algorithm";
@@ -28,7 +30,7 @@ public class AlgorithmAddAndDeleteApplicationAreasSample {
         algorithm = algorithmApi.getAlgorithm(algorithm.getId());
 
         // Retrieve a list of available application areas
-        List<TaxonomyElement> applicationAreas = algorithmApi.getApplicationAreas();
+        List<TaxonomyElement> applicationAreas = taxonomiesApi.getApplicationAreas();
 
         // Retrieve Engineering Science from the list
         TaxonomyElement engineeringScience = applicationAreas.stream()
@@ -38,7 +40,7 @@ public class AlgorithmAddAndDeleteApplicationAreasSample {
 
         /*
          * Application areas have children or sub-categories e.g.
-         * Civil Engineering is a child of Engineering Science.
+         * Civil Engineering is a child of Engineering Science
          * Below we show how to Civil Engineering from the list
          */
         TaxonomyElement civilEngineering = applicationAreas.stream()
@@ -52,7 +54,7 @@ public class AlgorithmAddAndDeleteApplicationAreasSample {
         applicationAreasUuids.add(civilEngineering.getUuid());
 
         /*
-         * Updates the algorithm and adds application areas to it
+         * Adds application areas to the algorithm
          */
 
         // Create the update request payload

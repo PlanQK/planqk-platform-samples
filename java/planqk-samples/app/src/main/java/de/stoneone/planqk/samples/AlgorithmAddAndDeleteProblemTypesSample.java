@@ -1,6 +1,7 @@
 package de.stoneone.planqk.samples;
 
 import de.stoneone.planqk.api.CommunityAlgorithmsApi;
+import de.stoneone.planqk.api.TaxonomiesApi;
 import de.stoneone.planqk.api.invoker.ApiClient;
 import de.stoneone.planqk.api.model.AlgorithmDto;
 import de.stoneone.planqk.api.model.TaxonomyElement;
@@ -15,6 +16,7 @@ public class AlgorithmAddAndDeleteProblemTypesSample {
         ApiClient apiClient = new ApiClient("apiKey", token);
 
         CommunityAlgorithmsApi algorithmApi = apiClient.buildClient(CommunityAlgorithmsApi.class);
+        TaxonomiesApi taxonomiesApi = apiClient.buildClient(TaxonomiesApi.class);
 
         // Required attributes to create an algorithm
         String name = "My Algorithm";
@@ -28,7 +30,7 @@ public class AlgorithmAddAndDeleteProblemTypesSample {
         algorithm = algorithmApi.getAlgorithm(algorithm.getId());
 
         // Retrieve a list of available problem types
-        List<TaxonomyElement> problemTypes = algorithmApi.getProblemTypes();
+        List<TaxonomyElement> problemTypes = taxonomiesApi.getProblemTypes();
 
         // Retrieve Artificial Intelligence Problem from the list
         TaxonomyElement artificialIntelligenceProblem = problemTypes.stream()
@@ -38,7 +40,7 @@ public class AlgorithmAddAndDeleteProblemTypesSample {
 
         /*
          * Problem types have children or sub-categories e.g.
-         * Natural language processing is a child of Artificial Intelligence Problem.
+         * Natural language processing is a child of Artificial Intelligence Problem
          * Below we show how to retrieve Natural language processing from the list
          */
         TaxonomyElement naturalLanguageProcessing = problemTypes.stream()
@@ -52,7 +54,7 @@ public class AlgorithmAddAndDeleteProblemTypesSample {
         problemTypeUuids.add(naturalLanguageProcessing.getUuid());
 
         /*
-         * Updates the algorithm and adds problem types to it
+         * Adds problem types to the algorithm
          */
 
         // Create the update request payload
