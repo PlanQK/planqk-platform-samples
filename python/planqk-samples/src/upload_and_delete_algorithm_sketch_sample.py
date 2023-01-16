@@ -20,13 +20,13 @@ algorithm = algorithm_api.get_algorithm(algorithm.id)
 # Uploads a sketch
 description = "Sketch description"
 base_url = "https://platform.planqk.de/qc-catalog"
-with open("Absolute path to the file", 'rb') as file:
-    sketch = algorithm_api.upload_sketch(
-        algorithm_id=algorithm.id,
-        description=description,
-        base_url=base_url,
-        file=file
-    )
+file = open("Absolute path to the file", 'rb')
+sketch = algorithm_api.upload_sketch(
+    algorithm_id=algorithm.id,
+    description=description,
+    base_url=base_url,
+    file=file
+)
 
 sketch = algorithm_api.get_sketch(algorithm_id=algorithm.id, sketch_id=sketch.id)
 sketch_image = algorithm_api.get_sketch_image(algorithm_id=algorithm.id, sketch_id=sketch.id)
