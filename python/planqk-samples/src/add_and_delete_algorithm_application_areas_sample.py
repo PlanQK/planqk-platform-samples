@@ -1,5 +1,6 @@
 from openapi_client.api_client import ApiClient
 from openapi_client.apis import CommunityAlgorithmsApi
+from openapi_client.apis import TaxonomiesApi
 from openapi_client.configuration import Configuration
 from openapi_client.model.algorithm_dto import AlgorithmDto
 from openapi_client.model.update_algorithm_request import UpdateAlgorithmRequest
@@ -11,14 +12,15 @@ configuration = Configuration(api_key=api_key)
 # Pass config to ApiClient
 api_client = ApiClient(configuration=configuration)
 algorithm_api = CommunityAlgorithmsApi(api_client=api_client)
+taxonomies_api = TaxonomiesApi(api_client=api_client)
 
 # Required attributes to create an algorithm
-algorithm_dto = AlgorithmDto(id="", name="My Algorithm", computation_model="CLASSIC")
+algorithm_dto = AlgorithmDto(name="My Algorithm", computation_model="CLASSIC")
 algorithm = algorithm_api.create_algorithm(algorithm_dto)
 algorithm = algorithm_api.get_algorithm(algorithm.id)
 
 # Retrieve a list of available application areas
-application_areas = algorithm_api.get_application_areas()
+application_areas = taxonomies_api.get_application_areas()
 
 # Retrieve Engineering Science from the list
 application_area_name = "Engineering Science"
@@ -55,7 +57,4 @@ update_algorithm_request = UpdateAlgorithmRequest(
     computation_model=algorithm.computation_model,
     application_area_uuids=[]
 )
-algorithm = algorithm_api.update_algorithm(
-    algorithm_id=algorithm.id,
-    update_algorithm_request=update_algorithm_request
-)
+algorithm = algorithm_api.update_algorithm(algorithm_id=algorithm.id, update_algorithm_request=update_algorithm_request)

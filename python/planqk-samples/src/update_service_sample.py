@@ -4,8 +4,8 @@ from openapi_client.api_client import ApiClient
 from openapi_client.apis import ServicePlatformApplicationsApi
 from openapi_client.apis import ServicePlatformServicesApi
 from openapi_client.configuration import Configuration
-from openapi_client.model.industry_dto import IndustryDto
 from openapi_client.model.update_version_request import UpdateVersionRequest
+from openapi_client.apis import TaxonomiesApi
 
 
 # Waits up to 5 minutes till the PlanQK Service has been created
@@ -36,6 +36,7 @@ configuration = Configuration(api_key=api_key)
 api_client = ApiClient(configuration=configuration)
 services_api = ServicePlatformServicesApi(api_client=api_client)
 applications_api = ServicePlatformApplicationsApi(api_client=api_client)
+taxonomies_api = TaxonomiesApi(api_client=api_client)
 
 name = "Your service name"
 quantumBackend = "NONE"  # Default value
@@ -66,23 +67,23 @@ version = service.service_definitions[0]
 
 wait_for_service_to_be_created()
 
-service = services_api.get_service(id=service.id)
+"""
+Update description and related industries
+"""
 
 # Retrieve a list of available industries
-industries = services_api.get_industries()
-# Retrieve 'information_technology' industry from the list
-information_technology = None
-industry_name = 'information_technology'
+industries = taxonomies_api.get_industries()
 
-for industry in industries:
-    if industry['name'] == industry_name:
-        information_technology = IndustryDto(id=industry['id'], name=industry['name'])
+# Retrieve 'Information Technology' industry from the list
+industry_name = 'Information Technology'
+information_technology = [industry for industry in industries if industry.label == industry_name]
 
 # Create the update request payload
 update_version_request = UpdateVersionRequest(
     description="Updated description",
-    industries=[information_technology]
+    industry_uuids=[information_technology[0].uuid]
 )
+
 version = services_api.update_service_version(
     service_id=service.id,
     version_id=version.id,
@@ -90,7 +91,7 @@ version = services_api.update_service_version(
 )
 
 # Remove all assigned industries
-update_version_request = UpdateVersionRequest(industries=[])
+update_version_request = UpdateVersionRequest(industry_uuids=[])
 version = services_api.update_service_version(
     service_id=service.id,
     version_id=version.id,
