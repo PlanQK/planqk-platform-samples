@@ -1,0 +1,23 @@
+openapi: 3.0.0
+info:
+  version: "1.0"
+  title: External Service Example
+  description: |
+    An example service that meters an API call for each request.
+paths:
+  /:
+    post:
+      tags:
+        - Service API
+      summary: Returns a random number.
+      responses:
+        "200":
+          description: A random number.
+          content:
+            text/plain:
+              schema:
+                type: string
+                description: A random number
+              example: 42
+        "500":
+          description: Internal server error
