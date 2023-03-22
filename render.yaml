@@ -1,0 +1,9 @@
+services:
+  - type: web
+    name: external-service-sample
+    env: docker
+    region: frankfurt
+    branch: master
+    plan: free
+    rootDir: python/external-service-sample
+    healthCheckPath: /
