@@ -1,23 +1,24 @@
 openapi: 3.0.0
 info:
   version: "1.0"
-  title: External Service Example
+  title: PlanQK External Service Example
   description: |
-    An example service that meters an API call for each request.
+    An example showing how to prototypically build a PlanQK External Service.
+    This example also shows how to meter the usage of the service and reports it back to PlanQK.
 paths:
   /:
     post:
       tags:
         - Service API
-      summary: Returns a random number.
+      summary: Returns a random number between 1 and 100.
       responses:
         "200":
-          description: A random number.
+          description: A random number between 1 and 100.
           content:
             text/plain:
               schema:
-                type: string
-                description: A random number
+                type: number
+                description: The random number
               example: 42
         "500":
-          description: Internal server error
+          description: Internal Server Error
