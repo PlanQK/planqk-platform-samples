@@ -4,4 +4,4 @@ Repository containing samples on how to work and communicate with services from 
 
 ## License
 
-Apache-2.0 | Copyright 2021-2022 StoneOne AG
+Apache-2.0 | Copyright 2021-2023 Anaqor AG
