@@ -1,41 +1,49 @@
-from typing import Union
 import os
-import requests
-import random
-from enum import Enum
+from random import *
+from typing import Union
 
+import requests
 from fastapi import FastAPI, Request
 
 app = FastAPI()
 
+PLANQK_METERING_API = os.getenv("PLANQK_METERING_API",
+                                "https://platform.planqk.de/qc-catalog/external-services/metering")
 
-class Color(Enum):
-    RED = 1
-    GREEN = 2
-    BLUE = 3
+ACCESS_TOKEN = os.getenv("ACCESS_TOKEN", None)
+PRODUCT_ID = os.getenv("PRODUCT_ID", None)
 
-@app.get("/health")
+
+@app.get("/")
 def health():
-    return "Up and running"
+    return "UP"
 
 
 @app.post("/")
 def run(request: Request):
-    reportApiUsage(request)
-    return random.random()
+    """ This is the main entry point for the API. """
+
+    # ... add your own code here ...
+
+    meter_api_usage(request)
+
+    # for the sake of this example, we'll just return a random number
+    return randint(1, 100)
 
 
-def reportApiUsage(request: Union[Request, None]):
+def meter_api_usage(request: Union[Request, None]):
+    """ This function is used to meter the usage of the API. """
+
     correlation_id = request.headers.get("x-correlation-id")
-    METERING_API_URL = os.getenv("METERING_API_URL", None)
-    ACCESS_TOKEN = os.getenv("ACCESS_TOKEN", None)
-    API_PRODUCT_ID = os.getenv("API_PRODUCT_ID", None)
 
     payload = {
         "correlationId": correlation_id,
-        "productId": API_PRODUCT_ID,
+        "productId": PRODUCT_ID,
         "count": 1
     }
-    r = requests.post(METERING_API_URL, json=payload,
-                      headers={"X-Auth-Token": ACCESS_TOKEN})
-    return
+
+    r = requests.post(PLANQK_METERING_API, json=payload, headers={"x-auth-token": ACCESS_TOKEN})
+    if r.status_code != requests.codes.ok:
+        print("Error while metering service usage")
+        print("Check the ACCESS_TOKEN and PRODUCT_ID environment variables")
+        print("Make sure you use the correlation id in the request header (x-correlation-id)")
