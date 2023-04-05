@@ -1,6 +1,6 @@
 # PlanQK Custom Docker Container Coding Template for Python
 
-This is a simple Node.js command-line application that takes a JSON file as input, sums up the values in the `values` property, and returns the result as a JSON object.
+This is a simple Python application that takes a JSON file as input, sums up the values in the `values` property, and returns the result as a JSON object.
 It also provides an optional flag to round up the sum.
 
 Please note that the Node.js application implements the PlanQK Platform interface for custom Docker containers.
