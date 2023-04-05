@@ -12,6 +12,8 @@ Specifically, the output must be printed to the standard output (stdout) and pre
 Only the last stdout output using this marker will be used as the final output of the service.
 The output itself must also be a valid JSON string.
 
+> More information about the PlanQK Platform interface for custom Docker containers can be found in the [PlanQK documentation](https://docs.platform.planqk.de/docs/service-platform/managed-services-custom-container.html).
+
 ## Usage
 
 ### Node.js
