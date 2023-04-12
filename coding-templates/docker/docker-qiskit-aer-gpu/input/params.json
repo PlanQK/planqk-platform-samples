@@ -1,0 +1,6 @@
+{
+  "gpu": true,
+  "shots": 100,
+  "depth": 10,
+  "qubits": 5
+}
