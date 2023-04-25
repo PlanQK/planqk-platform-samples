@@ -22,16 +22,17 @@ if not input_data:
 print("Setting up simulator backend...")
 
 if input_params.get('gpu', False) is True:
-    print("Trying to use GPU")
+    print("Trying to use GPU...")
     try:
         sim = Aer.get_backend('aer_simulator')
         sim.set_options(device='GPU')
+        print("Using GPU")
     except AerError as e:
         print("No CUDA device available, falling back to CPU")
         sim = Aer.get_backend('aer_simulator')
 
 else:
-    print("Use CPU")
+    print("Using CPU")
     sim = Aer.get_backend('aer_simulator')
 
 shots = input_params.get('shots', 100)
