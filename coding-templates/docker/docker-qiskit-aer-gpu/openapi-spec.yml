@@ -26,7 +26,7 @@ paths:
       tags:
         - Service API
       summary: Asynchronous execution of the service
-      description: This method starts an execution of the service, which in turn is processed asynchronously by the platform. The location header of the response contains the URL which can be used to query the status and the result of the execution.
+      description: Execute a quantum volume simulation via the Qiskit Aer Simulator. Choose in params whether to use GPU or not.  
       requestBody:
         required: true
         content:
@@ -34,13 +34,10 @@ paths:
             schema:
               type: object
               properties:
-                data:
-                  type: object
                 params:
                   type: object
             example:
-              data: { "values": [ 100, 50, 200, 70, 0.69 ] }
-              params: { "round_up": false }
+              params: {"gpu": true, "shots": 100, "depth": 10, "qubits": 5, "seed": 12345}
       responses:
         "201":
           description: Execution of the service started
@@ -115,11 +112,25 @@ paths:
               schema:
                 type: object
                 properties:
-                  sum:
-                    type: number
-                    description: The sum of the input values
+                  # result_counts:
+                  #   type: object
+                  #   description: Counts dictionary of the result
+                  elapsed_seconds:
+                    type: integer
+                    description: Elapsed time in seconds
+                  elapsed_milliseconds:
+                    type: integer
+                    description: Elapsed time in milliseconds
+                  duration_message:
+                    type: string
+                    description: Elapsed time in human readable format             
               example:
-                sum: 420.69
+                {
+                # result_counts: {"00": 23, "01": 20, "10": 22, "11": 35},
+                elapsed_seconds: 2,
+                elapsed_milliseconds: 500,
+                duration_message: "Elapsed time: 2 seconds, 500 milliseconds"
+                }
         "400":
           description: Invalid input
         "403":

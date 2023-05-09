@@ -1,6 +1,7 @@
 {
-  "gpu": true,
-  "shots": 100,
-  "depth": 10,
-  "qubits": 5
+  "gpu": false,
+  "shots": 100000,
+  "depth": 200,
+  "qubits": 22,
+  "seed": 12345
 }
