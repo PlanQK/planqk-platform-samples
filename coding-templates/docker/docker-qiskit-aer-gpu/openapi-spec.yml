@@ -37,7 +37,7 @@ paths:
                 params:
                   type: object
             example:
-              params: {"gpu": true, "shots": 100, "depth": 10, "qubits": 5, "seed": 12345}
+              params: {"gpu": true, "shots": 100, "depth": 10, "qubits": 5, "simulator_seed": 12345, "quantum_volume_seed": 0, "return_counts": false}
       responses:
         "201":
           description: Execution of the service started

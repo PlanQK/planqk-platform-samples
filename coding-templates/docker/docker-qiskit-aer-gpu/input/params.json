@@ -3,5 +3,7 @@
   "shots": 100000,
   "depth": 200,
   "qubits": 22,
-  "seed": 12345
+  "simulator_seed": 12345,
+  "quantum_volume_seed": 0,
+  "return_counts": false
 }
