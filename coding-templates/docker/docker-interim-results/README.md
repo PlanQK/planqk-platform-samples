@@ -1,4 +1,4 @@
-# PlanQK Custom Docker Container Coding Template for Node.js
+# PlanQK Coding Template Using Interim Results
 
 This is a simple Node.js application that takes a JSON file as input, sums up the values in the `values` property, and returns the result as a JSON object.
 It also provides an optional flag to round up the sum.

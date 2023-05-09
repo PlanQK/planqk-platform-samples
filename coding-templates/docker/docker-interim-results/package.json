@@ -1,5 +1,5 @@
 {
-  "name": "docker-intermediate-results",
+  "name": "docker-interim-results",
   "version": "1.0.0",
   "description": "PlanQK coding template for NodeJS enables the creation of a PlanQK managed service, which is purely built based on the Dockerfile provided in the repository.",
   "main": "index.js",
