@@ -1,0 +1,10 @@
+name: planqk-service
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.6,<3.10
+  - pip>=21
+  - pip:
+      - loguru # required
+#variables:
+#  LOG_LEVEL: INFO
