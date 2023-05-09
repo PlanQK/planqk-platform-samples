@@ -1,0 +1,5 @@
+{
+  "shots": 100,
+  "backend": "ionq.simulator",
+  "access_token": "<your personal access token>"
+}

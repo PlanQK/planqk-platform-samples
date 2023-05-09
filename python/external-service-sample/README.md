@@ -12,7 +12,7 @@ pip install -r requirements.txt
 uvicorn main:app --reload
 ```
 
-## Docker
+### Docker
 
 ```bash
 docker build -t planqk-external-service .    

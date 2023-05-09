@@ -1,0 +1,2 @@
+loguru
+qiskit==0.34.2

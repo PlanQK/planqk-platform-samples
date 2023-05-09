@@ -1,0 +1,11 @@
+name: dwave-hello-ide
+channels:
+  - conda-forge
+dependencies:
+  - python>=3.6,<3.10
+  - pip>=21
+  - pip:
+      - loguru # required
+      - dwave-ocean-sdk
+#variables:
+#  LOG_LEVEL: INFO
