@@ -36,11 +36,19 @@ paths:
               properties:
                 data:
                   type: object
+                  properties:
+                    n_bits:
+                      type: integer
+                      minimum: 2
+                      description: Number of qubits to use, defines the range of random numbers between 0 and 2^n_bits - 1
+                      example: 8
                 params:
                   type: object
-            example:
-              data: { "values": [ 100, 50, 200, 70, 0.69 ] }
-              params: { "round_off": false }
+                  properties:
+                    use_simulator:
+                      type: boolean
+                      description: Whether to use the simulator or the actual quantum computer
+                      example: true
       responses:
         "201":
           description: Execution of the service started
@@ -85,7 +93,7 @@ paths:
                 id: 87cb778e-ac43-11ec-b909-0242ac120002
                 status: SUCCEEDED
                 createdAt: "2022-01-01 22:38:08"
-                
+
         "400":
           description: Invalid input
         "403":

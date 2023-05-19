@@ -1,6 +1,7 @@
 """
 Template for implementing services running on the PlanQK platform
 """
+import time
 from typing import Dict, Any, Optional, Union
 
 from loguru import logger
@@ -22,33 +23,49 @@ def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] 
     Returns:
         response: (ResultResponse | ErrorResponse): Response as arbitrary json-serializable dict or an error to be passed back to the client
     """
-    access_token = params.get("access_token", None)
+    n_bits = data.get('n_bits', 2)  # defines the range of random numbers between 0 and 2^n_bits - 1
+    use_simulator = params.get('use_simulator', True)  # defines whether to use a simulator or a real quantum computer
 
-    provider = PlanqkQuantumProvider(access_token)
-    backend_name = params.get("backend", "ionq.simulator")
+    # initialize PlanQK provider
+    provider = PlanqkQuantumProvider()
+    if use_simulator:
+        backend_name = "ionq.simulator"
+    else:
+        backend_name = "ionq.qpu"
     backend = provider.get_backend(backend_name)
 
-    circuit = QuantumCircuit(3, 3)
-    circuit.h(0)
-    circuit.cx(0, 1)
-    circuit.cx(1, 2)
-    circuit.measure([0, 1, 2], [0, 1, 2])
+    # create circuit
+    circuit = QuantumCircuit(n_bits, n_bits)
+    circuit.h(range(n_bits))
 
+    # perform measurement
+    circuit.measure(range(n_bits), range(n_bits))
+
+    # transpile circuit
     circuit = transpile(circuit, backend)
 
-    shots = params.get("shots", 1)
-    job = backend.run(circuit, shots=shots)
+    max_shots = backend.configuration().max_shots
+    logger.info(f"Using max number of shots available for selected backend: {max_shots}")
 
-    counts_dict = job.result().get_counts()
+    start_time = time.time()
+
+    # execute the circuit
+    logger.info("Starting execution...")
+    job = backend.run(circuit, shots=max_shots)
+
+    # extract random number and convert from binary to decimal
+    random_number = int(list(job.result().get_counts().keys())[0], 2)
+
+    logger.info("Finished execution")
+    execution_time = time.time() - start_time
 
     result = {
-        'counts_dict': counts_dict
+        "random_number": random_number,
     }
     metadata = {
-        'shots': shots,
-        'backend': backend_name,
+        "execution_time": round(execution_time, 3),
     }
 
-    logger.info("Qiskit circuit successfully executed")
+    logger.info("Calculation successfully executed")
 
     return ResultResponse(result=result, metadata=metadata)
