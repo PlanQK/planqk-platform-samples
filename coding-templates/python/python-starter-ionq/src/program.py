@@ -27,7 +27,10 @@ def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] 
     use_simulator = params.get('use_simulator', True)  # defines whether to use a simulator or a real quantum computer
 
     # initialize PlanQK provider
+    # use next line if you are using the PlanQK CLI and have logged-in with "planqk login"
     provider = PlanqkQuantumProvider()
+    # otherwise, use the following line and replace "your personal access token" with your personal access token
+    # provider = PlanqkQuantumProvider(access_token="your personal access token")
     if use_simulator:
         backend_name = "ionq.simulator"
     else:
