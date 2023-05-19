@@ -1,4 +1,4 @@
-# Qiskit IonQ Example
+# python-starter-ionq
 
 This example shows how to use Qiskit to run a simple quantum circuit on IonQ's quantum computer.
 You could try it by yourself using the following code:
@@ -8,6 +8,6 @@ You could try it by yourself using the following code:
 
 ```bash
 conda env create -f environment.yml
-conda activate qiskit-ionq
-python3 -m src
+conda activate python-starter-ionq
+python -m src
 ```

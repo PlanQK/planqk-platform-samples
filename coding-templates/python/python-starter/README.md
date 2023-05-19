@@ -1,4 +1,4 @@
-# Get your service on the PlanQK Platform
+# python-starter
 
 You have your quantum code ready in a Python file and want to provide it to others via the PlanQK platform?
 Great, only a few more steps until your service is ready and can be deployed!

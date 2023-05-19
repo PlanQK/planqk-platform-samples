@@ -1,4 +1,4 @@
-name: qiskit-ionq
+name: python-starter-ionq
 channels:
   - conda-forge
 dependencies:
