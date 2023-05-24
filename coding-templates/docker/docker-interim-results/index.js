@@ -49,7 +49,9 @@ async function run() {
   await delay(10000)
 
   // Return the result as a JSON object
-  console.info('PlanQK:Job:Result:', JSON.stringify(result));
+  console.info('PlanQK:Job:MultilineResult');
+  console.info(JSON.stringify(result, null, 2));
+  console.info('PlanQK:Job:MultilineResult')
 
   console.log('Done!')
 }
