@@ -26,7 +26,10 @@ paths:
       tags:
         - Service API
       summary: Asynchronous execution of the service
-      description: Execute a quantum volume simulation via the Qiskit Aer Simulator. Choose in params whether to use GPU or not.  
+      description: |
+        This method starts an execution of the service, which in turn is processed asynchronously by the platform. The 
+        location header of the response contains the URL which can be used to query the status and the result of the 
+        execution.
       requestBody:
         required: true
         content:
@@ -36,8 +39,7 @@ paths:
               properties:
                 params:
                   type: object
-            example:
-              params: {"gpu": true, "shots": 100, "depth": 10, "qubits": 5, "simulator_seed": 12345, "quantum_volume_seed": 0, "return_counts": false}
+                  example: { "gpu": true, "shots": 100, "depth": 10, "qubits": 5, "simulator_seed": 12345, "quantum_volume_seed": 0, "return_counts": false }
       responses:
         "201":
           description: Execution of the service started
@@ -45,10 +47,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/job"
-              example:
-                id: 87cb778e-ac43-11ec-b909-0242ac120002
-                status: PENDING
-                createdAt: "2022-01-01 22:38:01"
           headers:
             Location:
               description: URL to query the status and the result of the execution
@@ -56,6 +54,12 @@ paths:
                 type: string
         "400":
           description: Invalid input
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
         "500":
           description: Internal server error
 
@@ -78,14 +82,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/job"
-              example:
-                id: 87cb778e-ac43-11ec-b909-0242ac120002
-                status: SUCCEEDED
-                createdAt: "2022-01-01 22:38:08"
-                startedAt: "2022-01-01 22:39:08"
-                endedAt: "2022-01-01 22:40:08"
-        "400":
-          description: Invalid input
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -112,27 +110,83 @@ paths:
               schema:
                 type: object
                 properties:
-                  # result_counts:
-                  #   type: object
-                  #   description: Counts dictionary of the result
-                  elapsed_seconds:
-                    type: integer
-                    description: Elapsed time in seconds
-                  elapsed_milliseconds:
-                    type: integer
-                    description: Elapsed time in milliseconds
-                  duration_message:
+                  result:
+                    type: object
+                    description: service-specific result object
+                  metadata:
+                    type: object
+                    description: service-specific metadata object which contains additional information besides the actual results
+                  code:
                     type: string
-                    description: Elapsed time in human readable format             
+                    description: service-specific error code representing the type of problem encountered
+                  detail:
+                    type: string
+                    description: service-specific error message describing the detail of the problem encountered
               example:
-                {
-                # result_counts: {"00": 23, "01": 20, "10": 22, "11": 35},
-                elapsed_seconds: 2,
-                elapsed_milliseconds: 500,
-                duration_message: "Elapsed time: 2 seconds, 500 milliseconds"
-                }
-        "400":
-          description: Invalid input
+                result: 420.69
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+  /{id}/interim-results:
+    get:
+      tags:
+        - Service API
+      summary: Get the last or a list of interim results of an execution
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of a certain execution
+          schema:
+            type: string
+        - in: query
+          name: last
+          required: false
+          description: |
+            Either true or false to show only the last or all interim results (default: false)
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+  /{id}/cancel:
+    put:
+      tags:
+        - Service API
+      summary: Cancel an execution
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of a certain execution
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/job"
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -149,10 +203,16 @@ components:
           type: string
         status:
           type: string
-          enum: [UNKNOWN, PENDING, RUNNING, SUCCEEDED, FAILED]
+          enum: [ UNKNOWN, PENDING, RUNNING, SUCCEEDED, CANCELLED, FAILED ]
         createdAt:
           type: string
         startedAt:
           type: string
         endedAt:
           type: string
+      example:
+        id: 87cb778e-ac43-11ec-b909-0242ac120002
+        status: SUCCEEDED
+        createdAt: "2022-01-01 22:38:08"
+        startedAt: "2022-01-01 22:39:08"
+        endedAt: "2022-01-01 22:40:08"

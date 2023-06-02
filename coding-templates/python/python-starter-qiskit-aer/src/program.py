@@ -25,7 +25,7 @@ def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] 
     """
     n_bits = data.get('n_bits', 2)  # defines the range of random numbers between 0 and 2^n_bits - 1
 
-    # Use Aer's AerSimulator
+    # Use AerSimulator
     simulator = AerSimulator()
 
     # create circuit

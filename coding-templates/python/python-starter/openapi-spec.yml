@@ -48,10 +48,6 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/job"
-              example:
-                id: 87cb778e-ac43-11ec-b909-0242ac120002
-                status: PENDING
-                createdAt: "2022-01-01 22:38:01"
           headers:
             Location:
               description: URL to query the status and the result of the execution
@@ -59,6 +55,12 @@ paths:
                 type: string
         "400":
           description: Invalid input
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
         "500":
           description: Internal server error
 
@@ -81,14 +83,8 @@ paths:
             application/json:
               schema:
                 $ref: "#/components/schemas/job"
-              example:
-                id: 87cb778e-ac43-11ec-b909-0242ac120002
-                status: SUCCEEDED
-                createdAt: "2022-01-01 22:38:08"
-                startedAt: "2022-01-01 22:39:08"
-                endedAt: "2022-01-01 22:40:08"
-        "400":
-          description: Invalid input
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -129,8 +125,69 @@ paths:
                     description: service-specific error message describing the detail of the problem encountered
               example:
                 result: 420.69
-        "400":
-          description: Invalid input
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+  /{id}/interim-results:
+    get:
+      tags:
+        - Service API
+      summary: Get the last or a list of interim results of an execution
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of a certain execution
+          schema:
+            type: string
+        - in: query
+          name: last
+          required: false
+          description: |
+            Either true or false to show only the last or all interim results (default: false)
+          schema:
+            type: boolean
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                type: object
+        "401":
+          description: Unauthorized
+        "403":
+          description: Forbidden
+        "404":
+          description: Not found
+        "500":
+          description: Internal server error
+  /{id}/cancel:
+    put:
+      tags:
+        - Service API
+      summary: Cancel an execution
+      parameters:
+        - in: path
+          name: id
+          required: true
+          description: The ID of a certain execution
+          schema:
+            type: string
+      responses:
+        "200":
+          description: Ok
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/job"
+        "401":
+          description: Unauthorized
         "403":
           description: Forbidden
         "404":
@@ -147,10 +204,16 @@ components:
           type: string
         status:
           type: string
-          enum: [UNKNOWN, PENDING, RUNNING, SUCCEEDED, FAILED]
+          enum: [ UNKNOWN, PENDING, RUNNING, SUCCEEDED, CANCELLED, FAILED ]
         createdAt:
           type: string
         startedAt:
           type: string
         endedAt:
           type: string
+      example:
+        id: 87cb778e-ac43-11ec-b909-0242ac120002
+        status: SUCCEEDED
+        createdAt: "2022-01-01 22:38:08"
+        startedAt: "2022-01-01 22:39:08"
+        endedAt: "2022-01-01 22:40:08"
