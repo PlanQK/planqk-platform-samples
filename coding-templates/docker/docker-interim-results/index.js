@@ -14,6 +14,8 @@ function delay(time) {
 }
 
 async function run() {
+  console.time("run");
+
   // Read the input files
   console.info('Reading input files...');
   const inputData = readJSONFile('/var/input/data.json') || readJSONFile('./input/data.json');
@@ -29,16 +31,19 @@ async function run() {
   await delay(1000)
 
   console.info('Calculating sum...');
+  console.info('PlanQK:Job:InterimResult:', JSON.stringify({ sum: 0 }))
 
   // Sum the values in the "values" property
   const sum = await inputData.values.reduce(async (acc, val) => {
     const s = await acc + val;
+    await delay(10000)
     console.info('PlanQK:Job:InterimResult:', JSON.stringify({ sum: s }))
-    await delay(5000)
     return s;
   }, 0);
 
   console.info('Calculation finished:', sum);
+
+  await delay(10000)
 
   // Round up the sum if "round_up" is true
   console.debug('Rounding up?', inputParams.round_up)
@@ -46,14 +51,13 @@ async function run() {
     sum: inputParams.round_up ? Math.ceil(sum) : sum
   };
 
-  await delay(10000)
-
   // Return the result as a JSON object
   console.info('PlanQK:Job:MultilineResult');
   console.info(JSON.stringify(result, null, 2));
   console.info('PlanQK:Job:MultilineResult')
 
   console.log('Done!')
+  console.timeEnd("run");
 }
 
 run();
