@@ -1,13 +1,11 @@
 # ${PROJECT_NAME}
 
-This is a PlanQK Service template for customer Docker containers.
+This is a PlanQK Service template for custom Docker containers.
 
-
-
-The application expects a `values` array with numbers (see [data.json](./input/data.json)) as input and returns the sum of the values as output.
+The service logic expects a `values` array with numbers (see [data.json](./input/data.json)) as input and returns the sum of the values as output.
 Further, it provides an optional flag to round up the sum, configurable through parameters (see [params.json](./input/params.json)).
 
-Please note that the application implements the PlanQK Platform interface for custom Docker containers.
+Please note that the service logic implements the PlanQK Platform interface for custom Docker containers.
 The PlanQK Platform ensures that the input provided via the Service API in the form of `{ "data": <data>, "params": <params> }` is provided to your code at runtime.
 At runtime the input data is mounted to file `/var/input/data.json` and the parameters to `/var/input/params.json` of the running container.
 Both files contain valid JSON strings, the respective values of `{ "data": <data>, "params": <params> }`.
@@ -69,20 +67,20 @@ Take a look to the [OpenAPI Specification](https://swagger.io/specification) for
 
 ### ${PROJECT_LANG}
 
-To run the application using ${PROJECT_LANG}, make sure you have ${PROJECT_LANG} installed on your system, navigate to the root directory of the project, and run the following command:
+To run the service locally using ${PROJECT_LANG}, make sure you have ${PROJECT_LANG} installed on your system, navigate to the root directory of the project, and run the following command:
 
 ```bash
 ${PROJECT_RUN_COMMAND}
 ```
 
-The application reads the input data from the file `/var/input/data.json` by default.
+The service logic reads the input data from the file `/var/input/data.json` by default.
 If the file is not found, it falls back to the `./input/data.json` file.
-The application also reads parameters from the file `/var/input/params.json` by default.
+The service logic also reads parameters from the file `/var/input/params.json` by default.
 If the file is not found, it falls back to the `./input/params.json` file, otherwise it assumes that `round_up` is `false`.
 
 ### Docker
 
-To run the application using Docker, make sure you have Docker installed on your system, navigate to the root directory of the project, and run the following commands:
+To run the service using Docker, make sure you have Docker installed on your system, navigate to the root directory of the project, and run the following commands:
 
 ```bash
 docker build -t ${PROJECT_NAME} .
@@ -108,7 +106,7 @@ docker run -v $PROJECT_ROOT/input:/var/input ${PROJECT_NAME}
 
 This command uses the `data.json` and the `params.json` file from the `./input` directory as the input for your service.
 The `-v` option is used to mount this directory as volume in the Docker container.
-The Docker container runs the application and prints the result to stdout.
+The Docker container runs the service logic and prints the result to stdout.
 
 ## Next steps
 
