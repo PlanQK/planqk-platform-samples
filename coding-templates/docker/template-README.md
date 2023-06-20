@@ -2,6 +2,8 @@
 
 This is a PlanQK Service template for custom Docker containers.
 
+## How does it work?
+
 The service logic expects a `values` array with numbers (see [data.json](./input/data.json)) as input and returns the sum of the values as output.
 Further, it provides an optional flag to round up the sum, configurable through parameters (see [params.json](./input/params.json)).
 
