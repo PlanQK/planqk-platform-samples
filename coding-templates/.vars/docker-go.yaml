@@ -2,5 +2,5 @@ vars:
   - name: PROJECT_LANG
     value: Go
   - name: PROJECT_RUN_COMMAND
-    value: |
+    value: |-
       go run main.go
