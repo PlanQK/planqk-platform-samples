@@ -176,6 +176,11 @@ For more information, see the [PlanQK documentation](https://docs.platform.planq
 
 However, you can also create a PlanQK Service manually via the PlanQK UI at <https://platform.planqk.de>.
 
+> **RECOMMENDED:**
+> To offer your service via an API to others, you should also take the time to adapt the `openapi-spec.yml` file, in order to describe your API.
+> This will help others to understand how to use your service.
+> For more information, see the [PlanQK documentation](https://docs.platform.planqk.de/docs/service-platform/managed-services.html).
+
 ### Manual service creation
 
 At last, you must zip (at minimum) the `src` folder and the `environment.yml` file, which will be the file you upload in order to create a PlanQK Service.
@@ -199,8 +204,3 @@ As soon as you click on "Create Service", the containerization of your program c
 
 As soon as it's finished you will be able to run a PlanQK Job to execute your service.
 Further, you may publish it for internal use or into the PlanQK Marketplace to share it with other PlanQK users.
-
-> **RECOMMENDED:**
-> To offer your service via an API to others, you should also take the time to adapt the `openapi-spec.yml` file, in order to describe your API.
-> This will help others to understand how to use your service.
-> For more information, see the [PlanQK documentation](https://docs.platform.planqk.de/docs/service-platform/managed-services.html).
