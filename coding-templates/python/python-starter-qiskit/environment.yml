@@ -1,4 +1,4 @@
-name: python-starter-qiskit-aer
+name: python-starter-qiskit
 channels:
   - conda-forge
 dependencies:

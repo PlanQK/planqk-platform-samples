@@ -1,4 +1,4 @@
-# python-starter-qiskit-aer
+# python-starter-qiskit
 
 This example shows how to use Qiskit to run a simple quantum circuit on the AerSimulator.
 You could try it by yourself using the following code:
@@ -8,6 +8,6 @@ You could try it by yourself using the following code:
 
 ```bash
 conda env create -f environment.yml
-conda activate python-starter-qiskit-aer
+conda activate python-starter-qiskit
 python -m src
 ```

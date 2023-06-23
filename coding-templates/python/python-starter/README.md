@@ -43,7 +43,7 @@ Execute the following when inside the root folder:
 
 ```bash
 conda env create -f environment.yml
-conda activate planqk-service
+conda activate python-starter
 python3 -m src
 ```
 
@@ -119,10 +119,10 @@ In general, by following the next steps you replicate the steps done by the Plan
 
 ```bash
 docker pull ghcr.io/planqk/job-template:latest-base-1.0.0
-docker build -t planqk-service .
+docker build -t python-starter .
 
 # or (for Apple M1 chips)
-docker buildx build -o type=docker --platform "linux/amd64" --tag planqk-service .
+docker buildx build -o type=docker --platform "linux/amd64" --tag python-starter .
 ```
 
 ### Start the Docker Container
@@ -133,7 +133,7 @@ In case, you do not use any input data or parameters that need to be passed into
 docker run -it \
   -e BASE64_ENCODED=false \
   -e LOG_LEVEL=DEBUG \
-  planqk-service
+  python-starter
 ```
 
 However, to pass the `"data"` and `"params"` attributes as JSON-serialized files into the container, you either mount it in the form of separate files (recommended) or pass it as environment variables (base64 encoded).
@@ -147,7 +147,7 @@ docker run -it \
   -e LOG_LEVEL=DEBUG \
   -v $PROJECT_ROOT/input/data.json:/var/input/data/data.json \
   -v $PROJECT_ROOT/input/params.json:/var/input/params/params.json \
-  planqk-service
+  python-starter
 ```
 
 > **HINT**
@@ -167,11 +167,11 @@ docker run -it \
 >   -e LOG_LEVEL=DEBUG \
 >   -v %cd%/input/data.json:/var/input/data/data.json \
 >   -v %cd%/input/params.json:/var/input/params/params.json \
->   planqk-service
+>   python-starter
 > ```
 
 > **NOTE:**
-> In general, you may mount any JSON-serialized input data file to `/var/input/data/data.json` and any file containing params to `/var/input/params/params.json` of the `planqk-service` container.
+> In general, you may mount any JSON-serialized input data file to `/var/input/data/data.json` and any file containing params to `/var/input/params/params.json` of the `python-starter` container.
 
 If the service executed successfully, you should see something like `Job:ResulsResponse:` followed by the output you defined for your service.
 Otherwise, if you see `Job:ErrorResponse`: Bad news, something went wrong.
@@ -209,5 +209,5 @@ Afterwards, start the container with the environment variables `DATA_VALUE` and 
 docker run -it \
   -e DATA_VALUE=eyJ2YWx1ZXMiOiBbMTAwLCA1MCwgMjAwLCA3MCwgMC42OV19 \
   -e PARAMS_VALUE=eyJyb3VuZF9vZmYiOiBmYWxzZX0= \
-  planqk-service
+  python-starter
 ```

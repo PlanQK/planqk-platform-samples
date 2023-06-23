@@ -1,4 +1,4 @@
-name: planqk-service
+name: python-starter
 channels:
   - conda-forge
 dependencies:
