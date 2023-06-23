@@ -1,0 +1,7 @@
+vars:
+  - name: PROJECT_LANG
+    value: Python 3.x
+  - name: PROJECT_RUN_COMMAND
+    value: |-
+      pip install -r requirements.txt
+      python main.py

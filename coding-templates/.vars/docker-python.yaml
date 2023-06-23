@@ -1,0 +1,6 @@
+vars:
+  - name: PROJECT_LANG
+    value: Python 3.x
+  - name: PROJECT_RUN_COMMAND
+    value: |-
+      python main.py

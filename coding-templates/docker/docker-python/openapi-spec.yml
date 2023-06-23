@@ -41,14 +41,13 @@ paths:
                       type: array
                       items:
                         type: number
+                      example: [ 100, 50, 200, 70, 0.69 ]
                 params:
                   type: object
                   properties:
                     round_up:
                       type: boolean
-            example:
-              data: { "values": [ 100, 50, 200, 70, 0.69 ] }
-              params: { "round_up": false }
+                      example: false
       responses:
         "201":
           description: Execution of the service started

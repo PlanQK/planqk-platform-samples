@@ -1,0 +1,6 @@
+vars:
+  - name: PROJECT_LANG
+    value: Node.js
+  - name: PROJECT_RUN_COMMAND
+    value: |-
+      node .

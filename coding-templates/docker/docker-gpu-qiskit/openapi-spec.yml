@@ -39,7 +39,42 @@ paths:
               properties:
                 params:
                   type: object
-                  example: { "gpu": true, "shots": 100, "depth": 10, "qubits": 5, "simulator_seed": 12345, "quantum_volume_seed": 0, "return_counts": false }
+                  properties:
+                    gpu:
+                      type: boolean
+                      description: |
+                        Whether to use a GPU or not (default: false)
+                      example: true
+                    shots:
+                      type: integer
+                      description: |
+                        Number of shots for the circuit, for sampling (default: 100)
+                      example: 100
+                    depth:
+                      type: integer
+                      description: |
+                        Depth of the circuit (default: 10)
+                      example: 10
+                    qubits:
+                      type: integer
+                      description: |
+                        Number of qubits for the circuit (default: 5)
+                      example: 22
+                    simulator_seed:
+                      type: integer
+                      description: |
+                        Seed for the simulator (default: 12345)
+                      example: 12345
+                    quantum_volume_seed:
+                      type: integer
+                      description: |
+                        Seed for the quantum volume (default: 0)
+                      example: 0
+                    return_counts:
+                      type: boolean
+                      description: |
+                        Whether to return counts or not (default: false)
+                      example: false
       responses:
         "201":
           description: Execution of the service started
