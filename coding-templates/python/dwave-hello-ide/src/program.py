@@ -9,7 +9,7 @@ from loguru import logger
 from .libs.return_objects import Response, ResultResponse
 
 PLANQK_PERSONAL_ACCESS_TOKEN = os.getenv("PLANQK_PERSONAL_ACCESS_TOKEN", "change me for local usage")
-PLANQK_ENDPOINT = "https://platform.planqk.de/dwave/sapi/v2"
+PLANQK_ENDPOINT = os.getenv("PLANQK_ENDPOINT", "https://platform.planqk.de/dwave/sapi/v2")
 
 
 def run() -> ResultResponse:
