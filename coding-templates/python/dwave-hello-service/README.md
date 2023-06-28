@@ -1,6 +1,6 @@
 # PlanQK D-Wave Service: A Hello World Example
 
-This example is prepare to run on the PlanQK Platform.
+This example is prepared to be run on the PlanQK Platform.
 This means, the program code does not contain any authentication credentials such as D-Wave Leap access tokens.
 So, if you try to run the program in your IDE or from command-line it will fail with the error `API token not defined`.
 You could try it by yourself using the following code:
@@ -39,9 +39,10 @@ docker run -it \
   dwave-hello-service
 ```
 
-Further, you can similarly execute your program utilizing PlanQK Platform capabilities.
-For this, you have to set up a PlanQK personal access token with `api` and `quantum_tokens` scope and add your D-Wave Leap access token under the _Quantum Backend Token_ section in your user settings.
-Afterwards, you can run the following command:
+Alternatively, you can execute the container using a PlanQK personal access token.
+Set up a [PlanQK personal access token](https://platform.planqk.de/settings/access-tokens) with `api` and `quantum_tokens` scope.
+Further, add your D-Wave Leap access token under the [Quantum Backend Token](https://platform.planqk.de/settings/backend-tokens) section in your user settings.
+Next, you can run the following command:
 
 ```bash
 docker run -it \
@@ -57,14 +58,14 @@ Finally, you are now prepared to create a PlanQK Service.
 Execute the following command to package the program code and the required metadata files:
 
 ```bash
-zip -r user_code.zip src environment.yml openapi-spec.yml requirements.txt
+zip -r dwave-hello-service.zip src environment.yml
 ```
 
-Navigate to <https://platform.planqk.de> and create a new PlanQK Service ([more info](https://docs.platform.planqk.de/en/latest/platform_instructions/service_platform.html#deploy-services-on-the-planqk-platform)) or, if you have the [PlanQK CLI](https://docs.platform.planqk.de/en/latest/platform_instructions/service_platform.html#using-the-planqk-cli) installed, execute the following command:
+Navigate to <https://platform.planqk.de> and create a new PlanQK Service or you may use the [PlanQK CLI](https://docs.platform.planqk.de/docs/getting-started/quickstart.html).
 
-```bash
-planqk up --file=user_code.zip
-```
+> **HINT:**
+> To use the PlanQK CLI, you need to create a `planqk.json` file.
+> See the [documentation](https://docs.platform.planqk.de/docs/getting-started/planqk-json-reference.html) for more details.
 
-Afterwards, you may run a PlanQK Job against your new PlanQK Service.
+Next, you may run a PlanQK Job against your new PlanQK Service.
 Further, you may publish for internal use or into the PlanQK Marketplace to share it with other PlanQK users.
