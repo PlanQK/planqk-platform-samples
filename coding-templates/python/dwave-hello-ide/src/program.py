@@ -1,38 +1,27 @@
 import time
-from typing import Dict, Any, Optional, Union
 
 import dimod
 import numpy as np
 from dwave.system import LeapHybridSampler
 from loguru import logger
 
-from .libs.return_objects import Response, ResultResponse, ErrorResponse
+from .libs.return_objects import Response, ResultResponse
 
 PLANQK_PERSONAL_ACCESS_TOKEN = "change me for local usage"
+PLANQK_ENDPOINT = "https://platform.planqk.de/dwave/sapi/v2"
 
 
-def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] = None) \
-        -> Union[ResultResponse, ErrorResponse]:
-    """
-    DWave example
-
-    Parameters:
-        data (Optional[Dict[str, Any]]): The input data sent by the client
-        params (Optional[Dict[str, Any]]): Contains parameters, which can be set by the client for parametrizing the execution
-
-    Returns:
-        response: (ResultResponse | ErrorResponse): Response as arbitrary json-serializable dict or an error to be passed back to the client
-    """
+def run() -> ResultResponse:
     response: Response
 
     logger.info("D-Wave program started")
     start_time = time.time()
 
     sampler = LeapHybridSampler(solver={"category": "hybrid"},
-                                endpoint="https://platform.planqk.de/dwave/sapi/v2",
+                                endpoint=PLANQK_ENDPOINT,
                                 token=PLANQK_PERSONAL_ACCESS_TOKEN)
 
-    bqm = dimod.generators.ran_r(1, 300)
+    bqm = dimod.generators.ran_r(1, 5)
     sample_set = sampler.sample(bqm)
 
     # filter for solution with the lowest energy
