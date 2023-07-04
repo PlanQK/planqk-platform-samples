@@ -3,6 +3,6 @@ vars:
     value: |-
       The starter template shows how to use Qiskit to run a simple quantum circuit on Qiskit's Aer simulator.
       
-      The logic implements a simple quantum circuit to generate a random number, either based on a simulator or on IonQ's quantum computer. 
+      The logic implements a simple quantum circuit to generate a random number. 
       As input, you can the number of bits (`n_bits`), which defines the range of random numbers between `0` and `2^n_bits - 1` (see [data.json](./input/data.json)).      
       Further, it provides a flag to specify whether to use a simulator or a real quantum computer, configurable through parameters (see [params.json](./input/params.json)).

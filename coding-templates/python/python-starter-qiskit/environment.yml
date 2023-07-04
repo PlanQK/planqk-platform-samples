@@ -6,7 +6,6 @@ dependencies:
   - pip>=21
   - pip:
       - loguru # required
-      - planqk-quantum
-      - qiskit-aer
+      - qiskit==0.43.0
 #variables:
 #  LOG_LEVEL: INFO

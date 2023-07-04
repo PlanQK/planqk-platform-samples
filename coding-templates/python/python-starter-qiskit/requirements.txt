@@ -1,3 +1,2 @@
 loguru
-planqk-quantum
-qiskit-aer
+qiskit==0.43.0
