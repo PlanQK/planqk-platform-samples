@@ -46,6 +46,8 @@ This is helpful for local testing.
 ## Usage
 
 The fist goal is to be able to run the `src` directory as a Python module with the code inside `program.py`.
+${USAGE_EXTENSION}
+
 Execute the following when inside the root folder:
 
 > **HINT:**
