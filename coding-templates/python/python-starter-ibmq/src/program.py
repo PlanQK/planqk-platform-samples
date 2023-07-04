@@ -39,7 +39,7 @@ def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] 
     else:
         devices = provider.backends(simulator=False, operational=True)
         backend = least_busy(devices)
-    logger.info(f"Using backend: {backend.name()}")
+    logger.info(f"Using backend: {backend}")
 
     # create circuit
     circuit = QuantumCircuit(n_bits, n_bits)
