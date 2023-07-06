@@ -32,9 +32,9 @@ def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] 
     # otherwise, use the following line and replace "your personal access token" with your personal access token
     # provider = PlanqkQuantumProvider(access_token="your personal access token")
     if use_simulator:
-        backend_name = "ionq.simulator"
+        backend_name = "azure.ionq.sim"
     else:
-        backend_name = "ionq.qpu"
+        backend_name = "azure.ionq.harmony"
     backend = provider.get_backend(backend_name)
 
     # create circuit
