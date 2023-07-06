@@ -1,4 +1,4 @@
-name: python-starter-dwave-ide
+name: dwave-ide
 channels:
   - conda-forge
 dependencies:
