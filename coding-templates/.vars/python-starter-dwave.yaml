@@ -1,0 +1,42 @@
+vars:
+  - name: SERVICE_LOGIC_EXPLAINED
+    value: |-
+      This example creates a random QUBO problem and solves it using the D-Wave Leap quantum annealer.
+      
+      The code does not contain any authentication credentials such as D-Wave Leap access tokens, so it only runs when executed via the PlanQK Platform.
+      If you try to run the program in your IDE or from command-line it will fail with the error `API token not defined`.
+  - name: USAGE_EXTENSION
+    value: ""
+  - name: DOCKER_EXTENSION
+    value: |-
+      ### Run the container against D-Wave Leap
+      
+      For this example it is required to set specific environment variable to successfully run the code against D-Wave Leap.
+      Start the container you may run the container as follows:
+      
+      > **IMPORTANT:**
+      > Change the value of the `PLATFORM_TOKEN` environment variable to your personal D-Wave Leap access token.
+      
+      ```bash
+      docker run -it \
+      -e FRAMEWORK=DWAVE \
+      -e PLATFORM_TOKEN=<add your D-Wave Leap access token> \
+      -e BASE64_ENCODED=false \
+      -e LOG_LEVEL=DEBUG \
+      ${PROJECT_NAME}
+      ```
+      
+      Alternatively, you can execute the container using your PlanQK personal access token.
+      Set up a [PlanQK personal access token](https://platform.planqk.de/settings/access-tokens) with `api` and `quantum_tokens` scope.
+      Further, add your D-Wave Leap access token under the [Quantum Backend Token](https://platform.planqk.de/settings/backend-tokens) section in your user settings.
+      Next, you can run the following command:
+      
+      ```bash
+      docker run -it \
+      -e FRAMEWORK=DWAVE \
+      -e DWAVE_ENDPOINT=https://platform.planqk.de/dwave/sapi/v2 \
+      -e PLATFORM_TOKEN=<add your PlanQK personal access token> \
+      -e BASE64_ENCODED=false \
+      -e LOG_LEVEL=DEBUG \
+      ${PROJECT_NAME}
+      ```

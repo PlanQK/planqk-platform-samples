@@ -1,4 +1,4 @@
-name: dwave-hello-ide
+name: qiskit-ibmq
 channels:
   - conda-forge
 dependencies:
@@ -6,6 +6,6 @@ dependencies:
   - pip>=21
   - pip:
       - loguru # required
-      - dwave-ocean-sdk==6.3.0
+      - qiskit==0.34.2
 #variables:
 #  LOG_LEVEL: INFO

@@ -170,6 +170,8 @@ docker run -it \
   ${PROJECT_NAME}
 ```
 
+${DOCKER_EXTENSION}
+
 ## Next steps
 
 Use `planqk up` to deploy your service to the PlanQK Platform.
@@ -190,14 +192,14 @@ At last, you must zip (at minimum) the `src` folder and the `environment.yml` fi
 Execute the following from within the project folder:
 
 ```bash
-zip -r user_code.zip src environment.yml
+zip -r planqk.zip src environment.yml
 ```
 
 Now that you have your service in a zip-file, creating a PlanQK Service via the platform is easy:
 From the landing page, go to "[Service Platform > My Services](https://platform.planqk.de/services)".
 Here you need to click on `Create Service` in the top right corner.
 
-Fill out the form respectively and import the `user_code.zip` file you created before to create a `Managed Service`.
+Fill out the form respectively and import the `planqk.zip` file you created before to create a `Managed Service`.
 And there you go.
 As soon as you click on "Create Service", the containerization of your program code starts and will be deployed on the PlanQK Platform.
 

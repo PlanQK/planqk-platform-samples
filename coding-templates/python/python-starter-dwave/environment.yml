@@ -1,4 +1,4 @@
-name: qiskit
+name: dwave-hello-service
 channels:
   - conda-forge
 dependencies:
@@ -6,6 +6,6 @@ dependencies:
   - pip>=21
   - pip:
       - loguru # required
-      - qiskit==0.34.2
+      - dwave-ocean-sdk==6.4.1
 #variables:
 #  LOG_LEVEL: INFO

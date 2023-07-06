@@ -1,4 +1,4 @@
-# PlanQK D-Wave: A Hello World Example
+# python-starter-dwave-ide
 
 This example is prepared to be run locally in your IDE or from command-line.
 The program code in this example only contains PlanQK authentication credentials, i.e., a PlanQK personal access token.
@@ -19,7 +19,7 @@ Next, you may run the program code from the command-line:
 
 ```bash
 conda env create -f environment.yml
-conda activate dwave-hello-ide
+conda activate python-starter-dwave-ide
 python3 -m src
 ```
 
@@ -30,7 +30,7 @@ The PlanQK Platform will automatically inject the appropriate access tokens at r
 Execute the following command to package the program code and the required metadata files:
 
 ```bash
-zip -r dwave-hello-ide.zip src environment.yml
+zip -r python-starter-dwave-ide.zip src environment.yml
 ```
 
 Navigate to <https://platform.planqk.de> and create a new PlanQK Service or you may use the [PlanQK CLI](https://docs.platform.planqk.de/docs/getting-started/quickstart.html).

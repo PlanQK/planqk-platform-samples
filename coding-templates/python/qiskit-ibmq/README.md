@@ -1,8 +1,8 @@
-# Qiskit Example
+# qiskit-ibmq
 
 ```bash
 conda env create -f environment.yml
-conda activate planqk-service
+conda activate qiskit-ibmq
 python3 -m src
 ```
 

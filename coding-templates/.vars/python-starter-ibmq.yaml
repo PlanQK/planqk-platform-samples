@@ -10,3 +10,5 @@ vars:
     value: |-
       To run the project locally, the `program.py` requires the environment variable `QISKIT_IBM_TOKEN` to be set.
       For example, expose the variable in your terminal by `export QISKIT_IBM_TOKEN="<your_token>"`.
+  - name: DOCKER_EXTENSION
+    value: ""
