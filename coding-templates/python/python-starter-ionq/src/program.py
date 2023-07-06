@@ -2,11 +2,10 @@
 Template for implementing services running on the PlanQK platform
 """
 import time
-from typing import Dict, Any, Optional, Union
-
 from loguru import logger
 from planqk.qiskit import PlanqkQuantumProvider
 from qiskit import QuantumCircuit, transpile
+from typing import Dict, Any, Optional, Union
 
 from .libs.return_objects import ResultResponse, ErrorResponse
 
@@ -32,7 +31,7 @@ def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] 
     # otherwise, use the following line and replace "your personal access token" with your personal access token
     # provider = PlanqkQuantumProvider(access_token="your personal access token")
     if use_simulator:
-        backend_name = "azure.ionq.sim"
+        backend_name = "azure.ionq.simulator"
     else:
         backend_name = "azure.ionq.harmony"
     backend = provider.get_backend(backend_name)
@@ -47,7 +46,9 @@ def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] 
     # transpile circuit
     circuit = transpile(circuit, backend)
 
-    max_shots = backend.configuration().max_shots
+    # TODO: use 'max_shots' from configuration() once the PlanqkBackend supports this
+    # max_shots = backend.configuration().max_shots
+    max_shots = 10000
     logger.info(f"Using max number of shots available for selected backend: {max_shots}")
 
     start_time = time.time()
