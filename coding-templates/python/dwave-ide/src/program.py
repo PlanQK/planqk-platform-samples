@@ -1,20 +1,18 @@
-import os
-import time
-
 import dimod
 import numpy as np
+import os
+import time
 from dwave.system import LeapHybridSampler
 from loguru import logger
+from typing import Dict, Any
 
-from .libs.return_objects import Response, ResultResponse
+from .libs.return_objects import ResultResponse
 
 PLANQK_PERSONAL_ACCESS_TOKEN = os.getenv("PLANQK_PERSONAL_ACCESS_TOKEN", "change me for local usage")
 PLANQK_ENDPOINT = os.getenv("PLANQK_ENDPOINT", "https://platform.planqk.de/dwave/sapi/v2")
 
 
-def run() -> ResultResponse:
-    response: Response
-
+def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> ResultResponse:
     logger.info("D-Wave program started")
     start_time = time.time()
 

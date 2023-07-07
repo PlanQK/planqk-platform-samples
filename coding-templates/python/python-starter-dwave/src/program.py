@@ -1,16 +1,14 @@
-import time
-
 import dimod
 import numpy as np
+import time
 from dwave.system import LeapHybridSampler
 from loguru import logger
+from typing import Dict, Any
 
-from .libs.return_objects import Response, ResultResponse
+from .libs.return_objects import ResultResponse
 
 
-def run() -> ResultResponse:
-    response: Response
-
+def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> ResultResponse:
     logger.info("D-Wave program started")
     start_time = time.time()
 
