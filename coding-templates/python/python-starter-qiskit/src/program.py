@@ -2,28 +2,28 @@
 Template for implementing services running on the PlanQK platform
 """
 import time
-from typing import Dict, Any, Optional, Union
-
 from loguru import logger
 from qiskit import QuantumCircuit, transpile
 from qiskit_aer import AerSimulator
+from typing import Dict, Any, Union
 
 from .libs.return_objects import ResultResponse, ErrorResponse
 
 
-def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] = None) \
-        -> Union[ResultResponse, ErrorResponse]:
+def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[ResultResponse, ErrorResponse]:
     """
     Default entry point of your code. Start coding here!
 
     Parameters:
-        data (Optional[Dict[str, Any]]): The input data sent by the client
-        params (Optional[Dict[str, Any]]): Contains parameters, which can be set by the client for parametrizing the execution
+        data (Dict[str, Any]): The input data sent by the client
+        params (Dict[str, Any]): Contains parameters, which can be set by the client to configure the execution
 
     Returns:
         response: (ResultResponse | ErrorResponse): Response as arbitrary json-serializable dict or an error to be passed back to the client
     """
-    n_bits = data.get('n_bits', 2)  # defines the range of random numbers between 0 and 2^n_bits - 1
+
+    # defines the range of random numbers between 0 and 2^n_bits - 1
+    n_bits = data.get('n_bits', 2)
 
     # Use AerSimulator
     simulator = AerSimulator()

@@ -1,11 +1,9 @@
 """
 Template for implementing services running on the PlanQK platform
 """
-
 import math
-from typing import Dict, Any, Optional, Union
-
 from loguru import logger
+from typing import Dict, Any, Union
 
 # Import response wrappers:
 # - use ResultResponse to return computation results
@@ -15,18 +13,18 @@ from .libs.return_objects import ResultResponse, ErrorResponse
 from .libs.utilities import add
 
 
-def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] = None) \
-        -> Union[ResultResponse, ErrorResponse]:
+def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[ResultResponse, ErrorResponse]:
     """
     Default entry point of your code. Start coding here!
 
     Parameters:
-        data (Optional[Dict[str, Any]]): The input data sent by the client
-        params (Optional[Dict[str, Any]]): Contains parameters, which can be set by the client for parametrizing the execution
+        data (Dict[str, Any]): The input data sent by the client
+        params (Dict[str, Any]): Contains parameters, which can be set by the client to configure the execution
 
     Returns:
         response: (ResultResponse | ErrorResponse): Response as arbitrary json-serializable dict or an error to be passed back to the client
     """
+
     try:
         values = data["values"]
         result = add(values)
