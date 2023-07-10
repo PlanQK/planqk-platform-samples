@@ -6,5 +6,5 @@ dependencies:
   - pip>=21
   - pip:
       - loguru # required
-#variables:
-#  LOG_LEVEL: DEBUG
+variables:
+  LOG_LEVEL: INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL

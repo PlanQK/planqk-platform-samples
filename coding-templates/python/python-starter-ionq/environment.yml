@@ -7,5 +7,5 @@ dependencies:
   - pip:
       - loguru # required
       - planqk-quantum
-#variables:
-#  LOG_LEVEL: DEBUG
+variables:
+  LOG_LEVEL: INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL

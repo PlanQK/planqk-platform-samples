@@ -7,5 +7,5 @@ dependencies:
   - pip:
       - loguru # required
       - dwave-ocean-sdk==6.4.1
-#variables:
-#  LOG_LEVEL: DEBUG
+variables:
+  LOG_LEVEL: INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
