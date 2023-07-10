@@ -5,35 +5,54 @@ import time
 from loguru import logger
 from planqk.qiskit import PlanqkQuantumProvider
 from qiskit import QuantumCircuit, transpile
-from typing import Dict, Any, Optional, Union
+from typing import Dict, Any, Union
 
 from .libs.return_objects import ResultResponse, ErrorResponse
 
 
-def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] = None) \
-        -> Union[ResultResponse, ErrorResponse]:
+def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[ResultResponse, ErrorResponse]:
     """
     Default entry point of your code. Start coding here!
 
     Parameters:
-        data (Optional[Dict[str, Any]]): The input data sent by the client
-        params (Optional[Dict[str, Any]]): Contains parameters, which can be set by the client for parametrizing the execution
+        data (Dict[str, Any]): The input data sent by the client
+        params (Dict[str, Any]): Contains parameters, which can be set by the client to configure the execution
 
     Returns:
         response: (ResultResponse | ErrorResponse): Response as arbitrary json-serializable dict or an error to be passed back to the client
     """
-    n_bits = data.get('n_bits', 2)  # defines the range of random numbers between 0 and 2^n_bits - 1
-    use_simulator = params.get('use_simulator', True)  # defines whether to use a simulator or a real quantum computer
+
+    # defines the range of random numbers between 0 and 2^n_bits - 1
+    n_bits: int = data.get('n_bits', 2)
+    # defines whether to use a simulator or a real quantum computer
+    use_simulator: bool = params.get('use_simulator', True)
 
     # initialize PlanQK provider
     # use next line if you are using the PlanQK CLI and have logged-in with "planqk login"
     provider = PlanqkQuantumProvider()
     # otherwise, use the following line and replace "your personal access token" with your personal access token
     # provider = PlanqkQuantumProvider(access_token="your personal access token")
+
+    # you may choose one of the following backends, depending whether you
+    # want to use Azure Quantum or AWS Braket as quantum backend provider
     if use_simulator:
+        # IonQ simulation backend from Azure Quantum
         backend_name = "azure.ionq.simulator"
+
+        # simulation backends from AWS Braket
+        # backend_name = "aws.sim.dm1"
+        # backend_name = "aws.sim.sv1"
+        # backend_name = "aws.sim.tn1"
+
     else:
+        # IonQ backend from Azure Quantum
         backend_name = "azure.ionq.harmony"
+
+        # IonQ backends from AWS Braket
+        # backend_name = "aws.ionq.harmony"
+        # backend_name = "aws.ionq.aria"
+
+    logger.info(f"Using backend: {backend_name}")
     backend = provider.get_backend(backend_name)
 
     # create circuit
@@ -49,7 +68,7 @@ def run(data: Optional[Dict[str, Any]] = None, params: Optional[Dict[str, Any]] 
     # TODO: use 'max_shots' from configuration() once the PlanqkBackend supports this
     # max_shots = backend.configuration().max_shots
     max_shots = 10000
-    logger.info(f"Using max number of shots available for selected backend: {max_shots}")
+    logger.info(f"Using max number of shots available: {max_shots}")
 
     start_time = time.time()
 
