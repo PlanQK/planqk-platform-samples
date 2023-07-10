@@ -8,4 +8,4 @@ dependencies:
       - loguru # required
       - dwave-ocean-sdk==6.4.1
 #variables:
-#  LOG_LEVEL: INFO
+#  LOG_LEVEL: DEBUG

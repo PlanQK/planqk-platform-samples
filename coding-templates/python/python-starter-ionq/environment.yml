@@ -8,4 +8,4 @@ dependencies:
       - loguru # required
       - planqk-quantum
 #variables:
-#  LOG_LEVEL: INFO
+#  LOG_LEVEL: DEBUG

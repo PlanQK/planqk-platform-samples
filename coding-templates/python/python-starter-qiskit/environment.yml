@@ -8,4 +8,4 @@ dependencies:
       - loguru # required
       - qiskit==0.43.0
 #variables:
-#  LOG_LEVEL: INFO
+#  LOG_LEVEL: DEBUG
