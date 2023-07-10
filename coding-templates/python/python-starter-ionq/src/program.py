@@ -26,6 +26,8 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
     n_bits: int = data.get('n_bits', 2)
     # defines whether to use a simulator or a real quantum computer
     use_simulator: bool = params.get('use_simulator', True)
+    # defines whether to use the maximum number of shots available for a selected backend
+    use_max_shots: bool = params.get('use_max_shots', False)
 
     # initialize PlanQK provider
     # use next line if you are using the PlanQK CLI and have logged-in with "planqk login"
@@ -65,10 +67,10 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
     # transpile circuit
     circuit = transpile(circuit, backend)
 
-    # TODO: use 'max_shots' from configuration() once the PlanqkBackend supports this
-    # max_shots = backend.configuration().max_shots
-    max_shots = 10000
-    logger.info(f"Using max number of shots available: {max_shots}")
+    max_shots = 100
+    if use_max_shots:
+        max_shots = backend.configuration().max_shots
+        logger.info(f"Using max number of shots available: {max_shots}")
 
     start_time = time.time()
 
