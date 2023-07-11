@@ -213,10 +213,7 @@ Here you need to click on `Create Service` in the top right corner.
 
 Fill out the form respectively and import the `planqk.zip` file you created before to create a `Managed Service`.
 And there you go.
-As soon as you click on "Create Service", the containerization of your program code starts and will be deployed on the PlanQK Platform.
-
-> **NOTE:**
-> A detailed step-by-step guide is also available in the [PlanQK documentation](https://docs.platform.planqk.de/docs/service-platform/managed-services.html).
+As soon as you click on "Create Service", the containerization of your code starts and will be deployed on the PlanQK Platform.
 
 As soon as it's finished you will be able to run a PlanQK Job to execute your service.
 Further, you may publish it for internal use or into the PlanQK Marketplace to share it with other PlanQK users.
