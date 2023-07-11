@@ -40,7 +40,7 @@ The PlanQK Platform ensures that the input provided via the Service API in the f
 ${SERVICE_LOGIC_EXPLAINED}
 
 If the `src` folder is executed as a Python module, the `__main__.py` is executed.
-It loads the input data from the `input` folder and calls the `run` method of the `program.py`.
+It loads the input data from the `input` folder and calls the `run()` method of the `program.py` file.
 This is helpful for local testing.
 
 ## Usage
@@ -48,7 +48,8 @@ This is helpful for local testing.
 The fist goal is to be able to run the `src` directory as a Python module with the code inside `program.py`.
 ${USAGE_EXTENSION}
 
-Execute the following when inside the root folder:
+We recommend building your service from within a dedicated and fresh Conda environment to install and track all required packages from the start.  
+For this reason, the template already contains an `environment.yml` file from which a fresh environment can be created:
 
 > **HINT:**
 > As an alternative to Conda, you may use the `requirements.txt` file to create a virtual environment with the tooling of your choice.
@@ -59,16 +60,27 @@ conda activate ${PROJECT_NAME}
 python3 -m src
 ```
 
-This will execute the `__main__`-method inside the `src` folder.
-Locally, you can test your code with a JSON-conform input format that gets imported within the `__main__`-method.
-You can use the files in the `input` folder to provide input data and parameters for local testing.
+## Extending the coding template
+
+The most important method, which takes the user input and generates the output of interest is the `run()` method inside `program.py`.
+You may adapt and extend the code inside this method to your needs.
+If you have written packages by yourself, which are required for your service, you can simply put them into the `libs` folder and import them via relative imports into your program.
 
 Any required python package (like `numpy`, `pandas`, ...) must be mentioned within, you guessed it, the `environment.yml` with their version number in the pip-installation format (e.g. `numpy==1.19.0`).
 It is important to define your dependencies in the `environment.yml` file as this file is used later by the PlanQK Platform at runtime.
 For development, you may use the `requirements.txt` file and a virtual environment tooling of your choice.
 Once you've installed your dependencies, you can import these packages within any Python file needed.
 
-If you have written packages by yourself, which are required for your service, you can simply put them into the `libs` folder and import them via relative imports into your program.
+> **IMPORTANT:**
+> Do not rename either the `src` folder, the `program.py` package, as well as the `run()`-method inside `program.py`.
+> These are fixed entry points for the service.
+> Changing their names will result in a malfunctioning service.
+
+From the start, you should be able to run `python3 -m src` from within the project folder.
+This will execute the `__main__`-method inside the `src` folder.
+Locally, you can test your code with a JSON-conform input format that gets imported within the `__main__`-method.
+You can use the files in the `input` folder to provide input data and parameters for local testing.
+However, you may adjust the `__main__`-method to, for example, load a different set of input data from the `input` folder or to execute the `run()` method with some static test input.
 
 ## Run the project using Docker
 
