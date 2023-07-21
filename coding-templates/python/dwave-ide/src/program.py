@@ -5,6 +5,7 @@ import dimod
 import numpy as np
 import time
 from loguru import logger
+from planqk.dwave import PlanqkDwaveProvider
 from typing import Dict, Any, Union
 
 from .libs.return_objects import ResultResponse, ErrorResponse
