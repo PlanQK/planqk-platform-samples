@@ -1,2 +1,2 @@
 loguru
-dwave-ocean-sdk==6.4.1
+planqk-quantum
