@@ -1,4 +1,4 @@
-name: dwave-hello-service
+name: python-starter-dwave
 channels:
   - conda-forge
 dependencies:
@@ -6,6 +6,6 @@ dependencies:
   - pip>=21
   - pip:
       - loguru # required
-      - dwave-ocean-sdk==6.4.1
+      - planqk-quantum
 variables:
   LOG_LEVEL: INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL

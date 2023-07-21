@@ -1,12 +1,13 @@
 """
 Template for implementing services running on the PlanQK platform
 """
+import time
+from typing import Dict, Any, Union
+
 import dimod
 import numpy as np
-import time
-from dwave.system import LeapHybridSampler
 from loguru import logger
-from typing import Dict, Any, Union
+from planqk.dwave.provider import PlanqkDwaveProvider
 
 from .libs.return_objects import ResultResponse, ErrorResponse
 
@@ -26,8 +27,13 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
     logger.info("D-Wave program started")
     start_time = time.time()
 
-    sampler = LeapHybridSampler(solver={"category": "hybrid"})
+    # through the PlanQKDwaveProvider you can access our supported D-Wave samplers
+    provider = PlanqkDwaveProvider()
 
+    # create a sampler by its class name, and set any additional parameters you desire
+    sampler = provider.get_sampler("LeapHybridSampler", solver={"category": "hybrid"})
+
+    # create a random BQM and sample it
     bqm = dimod.generators.ran_r(1, 5)
     sample_set = sampler.sample(bqm)
 
