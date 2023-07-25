@@ -37,6 +37,12 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
         channel="ibm_quantum", token=token, instance="ibm-q/open/main"
     )
 
+    if use_simulator:
+        backend = service.get_backend("ibmq_qasm_simulator")
+    else:
+        backend = service.least_busy(simulator=False, operational=True)
+    logger.info(f"Using backend: {backend}")
+
     # create circuit
     circuit = QuantumCircuit(n_bits, n_bits)
     circuit.h(range(n_bits))
@@ -46,7 +52,7 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
 
     start_time = time.time()
     logger.info("Acquiring session...")
-    with Session(service, backend="ibmq_qasm_simulator", max_time=None) as session:
+    with Session(service, backend=backend, max_time=None) as session:
         sampler = Sampler(session=session)
 
         logger.info("Starting execution...")
@@ -60,8 +66,12 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
 
         session.close()
 
+    # extract random number
+    random_number = int(list(job_result.quasi_dists[0].keys())[0])
+
     result = {
-        "job_result": job_result,
+        "random_number": random_number,
+        "result": job_result,
     }
     metadata = {
         "execution_time": round(execution_time, 3),
