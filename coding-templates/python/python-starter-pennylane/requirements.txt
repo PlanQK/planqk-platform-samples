@@ -1,0 +1,2 @@
+loguru
+pennylane==0.31.0
