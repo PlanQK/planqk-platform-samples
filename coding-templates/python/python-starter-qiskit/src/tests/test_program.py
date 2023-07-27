@@ -5,7 +5,12 @@ from src.program import run
 os.environ["DEBUG"] = "true"
 
 
-def test_should_return_sum() -> None:
-    response = run({"values": [10, 5, 20, 7]}, {})
-    assert response.result["sum"] == 42
-    assert response.metadata is None
+def test_should_return_random_number() -> None:
+    
+    data = {"n_bits": 8}
+    params = {}
+    
+    response = run(data, params)
+    assert response.result["random_number"] < 256
+    assert response.result["random_number"] >= 0
+    assert "execution_time" in response.metadata.keys() 
