@@ -1,0 +1,11 @@
+vars:
+  - name: SERVICE_LOGIC_EXPLAINED
+    value: |-
+      The starter template demonstrates how to use Pennylane in order to optimize parameters of a variational quantum circuit with a gradient descent (GD) optimizer.
+
+      The logic expects an `init_params` array with two numbers (see [data.json](./input/data.json)) as input and returns the optimized parameters, as well as the obtained expectation value of the Pauli-Z operator (should be -1 ideally).
+      Further, it provides additional optional flags such as `iter_steps` (number of GD steps), `step_size` (learning rate of each GD step) and `print_iter` (number of steps after the obj value gets evaluated and logged) (see [params.json](./input/params.json)).
+  - name: USAGE_EXTENSION
+    value: ""
+  - name: DOCKER_EXTENSION
+    value: ""
