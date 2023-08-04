@@ -27,7 +27,7 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
     logger.info("D-Wave program started")
     start_time = time.time()
 
-    # through the PlanQKDwaveProvider you can access our supported D-Wave samplers
+    # through the PlanqkDwaveProvider you can access our supported D-Wave samplers
     provider = PlanqkDwaveProvider()
 
     # create a sampler by its class name, and set any additional parameters you desire
