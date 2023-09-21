@@ -1,6 +1,7 @@
 import logging
 import os
 import sys
+import json
 
 from loguru import logger
 
@@ -12,7 +13,13 @@ logging.getLogger().handlers = [LogHandler()]
 logging.getLogger().setLevel(logging_level)
 logger.configure(handlers=[{"sink": sys.stdout, "level": logging_level}])
 
-response = run()
+with open(f"./input/data.json") as file:
+    data = json.load(file)
+
+with open(f"./input/params.json") as file:
+    params = json.load(file)
+
+response = run(data, params)
 
 print()
 print(response.to_json())
