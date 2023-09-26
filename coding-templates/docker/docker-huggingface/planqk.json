@@ -1,0 +1,11 @@
+{
+  "name": "BERT sentiment analysis",
+  "description": "",
+  "quantumBackend": "NONE",
+  "resources": {
+    "cpu": 1,
+    "memory": 2
+  },
+  "runtime": "DOCKER",
+  "serviceId": "e69e92ce-e3cb-408f-a2a8-bed0d2a0e7ff"
+}
