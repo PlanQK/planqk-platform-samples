@@ -2,12 +2,11 @@ name: Create and publish Docker images
 
 on:
   release:
-    types: [ created ]
+    types: [ published ]
 
 env:
   REGISTRY: ghcr.io
   NAMESPACE: planqk
-  IMAGE_NAME: ${{ github.repository }}
 
 jobs:
   build-and-push-image:
