@@ -7,6 +7,10 @@ on:
 jobs:
   release-check:
     runs-on: ubuntu-latest
+    permissions:
+      # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
+      contents: write
+      actions: write
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
@@ -21,4 +25,5 @@ jobs:
           extra_plugins: |
             @semantic-release/git
         env:
-          GITHUB_TOKEN: ${{ secrets.TOKEN_RELEASE_CHECK }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          # GITHUB_TOKEN: ${{ secrets.TOKEN_RELEASE_CHECK }}
