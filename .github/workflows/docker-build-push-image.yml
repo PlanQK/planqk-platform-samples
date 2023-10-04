@@ -1,11 +1,8 @@
 name: Create and publish a Docker image
 
-#on:
-#  push:
-#    branches: ['release']
 on:
-  push:
-    branches: [ "master" ]
+  release:
+    types: [ created ]
 
 env:
   REGISTRY: ghcr.io
@@ -23,6 +20,8 @@ jobs:
       matrix:
         path:
           - coding-templates/python/python-starter
+          - coding-templates/python/python-starter-dwave
+          - coding-templates/python/python-starter-ionq
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
