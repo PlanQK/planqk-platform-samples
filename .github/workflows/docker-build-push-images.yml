@@ -20,7 +20,6 @@ jobs:
         path:
           - coding-templates/python/python-starter
           - coding-templates/python/python-starter-dwave
-          - coding-templates/python/python-starter-ionq
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
