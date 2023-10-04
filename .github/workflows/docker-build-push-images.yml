@@ -11,6 +11,10 @@ env:
 jobs:
   build-and-push-image:
     runs-on: ubuntu-latest
+    permissions:
+      # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
+      contents: read
+      packages: write
     strategy:
       matrix:
         path:
