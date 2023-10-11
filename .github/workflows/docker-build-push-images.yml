@@ -42,3 +42,7 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
+      - name: Publish to private registry
+        run: |
+          docker tag ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ matrix.path }}:latest ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ matrix.path }}-private:latest
+          docker push ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ matrix.path }}-private:latest
