@@ -9,7 +9,7 @@ env:
   NAMESPACE: planqk
 
 jobs:
-  build-and-push-image:
+  public-registry:
     runs-on: ubuntu-latest
     permissions:
       # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
@@ -43,7 +43,7 @@ jobs:
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
 
-  build-and-push-image-to-private-registry:
+  private-registry:
     runs-on: ubuntu-latest
     permissions:
       # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
