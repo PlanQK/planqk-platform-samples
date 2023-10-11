@@ -42,7 +42,36 @@ jobs:
           push: true
           tags: ${{ steps.meta.outputs.tags }}
           labels: ${{ steps.meta.outputs.labels }}
-      - name: Publish to private registry
-        run: |
-          docker tag ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ matrix.path }}:latest ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ matrix.path }}-private:latest
-          docker push ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ matrix.path }}-private:latest
+
+  build-and-push-image-to-private-registry:
+    runs-on: ubuntu-latest
+    permissions:
+      # Sets the permissions granted to the `GITHUB_TOKEN` for the actions in this job.
+      contents: read
+      packages: write
+    strategy:
+      matrix:
+        path:
+          - coding-templates/python/python-starter
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+      - name: Log in to the container registry
+        uses: docker/login-action@v3
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+      - name: Extract metadata (tags, labels) for Docker
+        id: meta
+        uses: docker/metadata-action@v5
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.NAMESPACE }}/${{ matrix.path }}-private
+      - name: Build and push Docker image
+        uses: docker/build-push-action@v5
+        with:
+          context: ${{ matrix.path }}
+          file: ${{ matrix.path }}/Dockerfile
+          push: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
