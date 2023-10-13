@@ -5,5 +5,5 @@ services:
     region: frankfurt
     branch: master
     plan: free
-    rootDir: python/external-service-sample
+    rootDir: planqk-services/external-service-sample
     healthCheckPath: /
