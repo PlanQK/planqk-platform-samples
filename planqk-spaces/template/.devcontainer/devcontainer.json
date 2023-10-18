@@ -14,7 +14,10 @@
     "forwardPorts": [7860],
 
     // Use 'postCreateCommand' to run commands after the container is created.
-    "postCreateCommand": "pip3 install --user -r requirements-dev.txt && pip3 install --user -r requirements.txt",
+    "postCreateCommand": [
+        "pip3 install --user -r requirements-dev.txt",
+        "pip3 install --user -r requirements.txt",
+    ],
 
     // Use 'postStartCommand' to run commands after the container is started.
     "postStartCommand": "gradio app.py",
