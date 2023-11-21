@@ -10,7 +10,8 @@ from typing import Dict, Any, Union
 from .libs.return_objects import ResultResponse, ErrorResponse
 
 
-def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[ResultResponse, ErrorResponse]:
+def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[ResultResponse,
+                                                                             ErrorResponse]:
     """
     Default entry point of your code. Start coding here!
 
@@ -23,7 +24,7 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
     """
 
     # defines the range of random numbers between 0 and 2^n_bits - 1
-    n_bits = data.get('n_bits', 2)
+    n_bits = data.get("n_bits", 2)
 
     # Use AerSimulator
     simulator = AerSimulator()
@@ -35,17 +36,11 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
     # perform measurement
     circuit.measure(range(n_bits), range(n_bits))
 
-    # transpile circuit
-    circuit = transpile(circuit, simulator)
-
-    max_shots = simulator.configuration().max_shots
-    logger.info(f"Using max number of shots available for selected simulator: {max_shots}")
-
     start_time = time.time()
 
     # execute the circuit
     logger.info("Starting execution...")
-    job = simulator.run(circuit, shots=max_shots)
+    job = simulator.run(circuit, shots=1)
 
     # extract random number and convert from binary to decimal
     random_number = int(list(job.result().get_counts().keys())[0], 2)
