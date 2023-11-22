@@ -56,6 +56,10 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
                 logger.error(
                     "No valid PlanQK access token provided, executing with local simulator")
                 backend = AerSimulator()
+            except Exception:
+                logger.error(
+                    f"Could not load backend {backend}, executing with local simulator")
+                backend = AerSimulator()
 
     else:
         logger.info("Executing locally with AerSimulator")

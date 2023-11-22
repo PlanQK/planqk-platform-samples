@@ -16,6 +16,22 @@ components:
           example: 8
     inputParams:
       type: object
+      properties:
+        planqk_execution:
+          type: boolean
+          description: |
+            If true, the service is executed on the PlanQK platform. If false, the service is executed locally.
+          example: false
+        planqk_access_token:
+          type: string
+          description: |
+            Access token to use the PlanQK platform. Only required if planqk_execution is true.
+          example: your-planqk-access-token
+        backend:
+          type: string
+          description: |
+            Backend to use for the execution of the service. Only required if planqk_execution is true. Defaults to IONQ simulator backend.
+          example: azure.ionq.simulator
     interimResultResponse:
       type: object
     resultResponse:
@@ -55,7 +71,7 @@ components:
           type: string
         status:
           type: string
-          enum: [ UNKNOWN, PENDING, RUNNING, SUCCEEDED, CANCELLED, FAILED ]
+          enum: [UNKNOWN, PENDING, RUNNING, SUCCEEDED, CANCELLED, FAILED]
         createdAt:
           type: string
         startedAt:
