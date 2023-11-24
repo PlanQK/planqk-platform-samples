@@ -1,0 +1,4 @@
+loguru~=0.7.2
+cirq~=1.2.0
+planqk-quantum~=1.26.0
+qiskit-aer==0.12.2
