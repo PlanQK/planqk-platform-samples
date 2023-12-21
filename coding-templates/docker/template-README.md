@@ -13,9 +13,9 @@ At runtime the input data is mounted to file `/var/input/data.json` and the para
 Both files contain valid JSON strings, the respective values of `{ "data": <data>, "params": <params> }`.
 Additionally, the platform requires that any output produced by the service to be in a specific format.
 Specifically, the output must be printed to the standard output (stdout) and prefixed with `PlanQK:Job:Result:` followed by a valid JSON string.
-More options to output results are available, see the [PlanQK documentation](https://docs.platform.planqk.de/docs/service-platform/managed-services-custom-container.html#output).
+More options to output results are available, see the [PlanQK documentation](https://docs.platform.planqk.de/managed-services/managed-services-runtime-interface.html).
 
-> More information about the PlanQK Platform interface for custom Docker containers can be found in the [PlanQK documentation](https://docs.platform.planqk.de/docs/service-platform/managed-services-custom-container.html).
+> More information about the PlanQK Platform interface for custom Docker containers can be found in the [PlanQK documentation](https://docs.platform.planqk.de/managed-services/managed-services-custom-container.html).
 
 ## Project structure
 
@@ -114,4 +114,4 @@ The Docker container runs the service logic and prints the result to stdout.
 
 Use `planqk up` to deploy your service to the PlanQK Platform.
 Next, you may use `planqk run` to execute your service.
-For more information, see the [PlanQK documentation](https://docs.platform.planqk.de/docs/getting-started/quickstart.html).
+For more information, see the [PlanQK documentation](https://docs.platform.planqk.de/quickstart.html).

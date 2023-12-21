@@ -188,14 +188,14 @@ ${DOCKER_EXTENSION}
 
 Use `planqk up` to deploy your service to the PlanQK Platform.
 Next, you may use `planqk run` to execute your service.
-For more information, see the [PlanQK documentation](https://docs.platform.planqk.de/docs/getting-started/quickstart.html).
+For more information, see the [PlanQK documentation](https://docs.platform.planqk.de/quickstart.html).
 
 However, you can also create a PlanQK Service manually via the PlanQK UI at <https://platform.planqk.de>.
 
 > **RECOMMENDED:**
 > To offer your service via an API to others, you should also take the time to adapt the `openapi-spec.yml` file, in order to describe your API.
 > This will help others to understand how to use your service.
-> For more information, see the [PlanQK documentation](https://docs.platform.planqk.de/docs/service-platform/managed-services.html).
+> For more information, see the [PlanQK documentation](https://docs.platform.planqk.de/managed-services/introduction.html).
 
 ### Manual service creation
 

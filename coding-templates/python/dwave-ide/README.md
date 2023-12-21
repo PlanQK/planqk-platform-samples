@@ -33,11 +33,11 @@ Execute the following command to package the program code and the required metad
 zip -r python-starter-dwave-ide.zip src environment.yml
 ```
 
-Navigate to <https://platform.planqk.de> and create a new PlanQK Service or you may use the [PlanQK CLI](https://docs.platform.planqk.de/docs/getting-started/quickstart.html).
+Navigate to <https://platform.planqk.de> and create a new PlanQK Service or you may use the [PlanQK CLI](https://docs.platform.planqk.de/quickstart.html).
 
 > **HINT:**
 > To use the PlanQK CLI, you need to create a `planqk.json` file.
-> See the [documentation](https://docs.platform.planqk.de/docs/getting-started/planqk-json-reference.html) for more details.
+> See the [documentation](https://docs.platform.planqk.de/planqk-json-reference.html) for more details.
 
 Next, you may run a PlanQK Job against your new PlanQK Service.
 Further, you may publish for internal use or into the PlanQK Marketplace to share it with other PlanQK users.
