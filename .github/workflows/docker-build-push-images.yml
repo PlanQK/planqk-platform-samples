@@ -22,6 +22,8 @@ jobs:
           - coding-templates/python/python-starter-dwave
           - coding-templates/python/python-starter-ionq
           - coding-templates/python/python-starter-aws
+          - coding-templates/docker/docker-go
+          - coding-templates/docker/docker-interim-results
     steps:
       - name: Checkout repository
         uses: actions/checkout@v4
