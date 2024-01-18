@@ -7,5 +7,3 @@ dependencies:
   - pip:
       - loguru # required
       - qiskit==0.34.2
-variables:
-  LOG_LEVEL: INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL

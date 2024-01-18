@@ -7,5 +7,3 @@ dependencies:
   - pip:
       - loguru # required
       - -r requirements.txt
-variables:
-  LOG_LEVEL: INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL

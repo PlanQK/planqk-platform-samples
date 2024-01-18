@@ -8,5 +8,3 @@ dependencies:
       - loguru # required
       - qiskit==0.43.0
       - qiskit-ibm-provider==0.6.1
-variables:
-  LOG_LEVEL: INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL

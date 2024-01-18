@@ -6,5 +6,3 @@ dependencies:
   - pip>=21
   - pip:
       - -r requirements.txt
-variables:
-  LOG_LEVEL: INFO # DEBUG, INFO, WARNING, ERROR, CRITICAL
