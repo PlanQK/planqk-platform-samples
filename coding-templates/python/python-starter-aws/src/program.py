@@ -36,14 +36,20 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
     # provider = PlanqkQuantumProvider(access_token="your personal access token")
 
     # you may choose one of the following backends, depending whether you
-    # want to use Azure Quantum or AWS Braket as quantum backend provider
+    # want to use a specific simulator or specific AWS Braket backend
     if use_simulator:
-        # IonQ simulation backend from Azure Quantum
-        backend_name = "azure.ionq.simulator"
+        # simulation backends from AWS Braket
+        backend_name = "aws.sim.sv1"
+        # backend_name = "aws.sim.dm1"
+        # backend_name = "aws.sim.tn1"
 
     else:
-        # IonQ backend from Azure Quantum
-        backend_name = "azure.ionq.harmony"
+        # AWS Braket backends
+        backend_name = "aws.ionq.aria"
+        # backend_name = "aws.ionq.aria-2"
+        # backend_name = "aws.ionq.harmony"
+        # backend_name = "aws.oqc.lucy"
+        # backend_name = "aws.rigetti.aspen"
 
     logger.info(f"Using backend: {backend_name}")
     backend = provider.get_backend(backend_name)
