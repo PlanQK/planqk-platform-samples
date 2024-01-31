@@ -2,10 +2,12 @@
 Template for implementing services running on the PlanQK platform
 """
 import time
+from typing import Dict, Any, Union
+
 from loguru import logger
 from planqk.qiskit import PlanqkQuantumProvider
 from qiskit import QuantumCircuit, transpile
-from typing import Dict, Any, Union
+from qiskit.tools.monitor import job_monitor
 
 from .libs.return_objects import ResultResponse, ErrorResponse
 
@@ -68,6 +70,7 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
     # execute the circuit
     logger.info("Starting execution...")
     job = backend.run(circuit, shots=max_shots)
+    job_monitor(job)
 
     # extract random number and convert from binary to decimal
     random_number = int(list(job.result().get_counts().keys())[0], 2)
