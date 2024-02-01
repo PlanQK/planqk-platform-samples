@@ -1,9 +1,0 @@
-name: qiskit-ibmq
-channels:
-  - conda-forge
-dependencies:
-  - python>=3.6,<3.10
-  - pip>=21
-  - pip:
-      - loguru # required
-      - qiskit==0.34.2
