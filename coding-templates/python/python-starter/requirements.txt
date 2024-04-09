@@ -1,3 +1,2 @@
 loguru
 planqk-quantum
-planqk-service-sdk
