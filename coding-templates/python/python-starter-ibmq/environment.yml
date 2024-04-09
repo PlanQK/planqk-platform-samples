@@ -2,9 +2,7 @@ name: python-starter-ibmq
 channels:
   - conda-forge
 dependencies:
-  - python>=3.6,<3.10
+  - python>=3.10
   - pip>=21
   - pip:
-      - loguru # required
-      - qiskit==0.43.0
-      - qiskit-ibm-provider==0.6.1
+      - -r requirements.txt
