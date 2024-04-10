@@ -1,22 +1,19 @@
-name: Check if release is necessary
+name: Release
 
 on:
   push:
     branches: [ "master" ]
 
 jobs:
-  release-check:
+  release:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-      - name: Setup Node.js
-        uses: actions/setup-node@v3
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
         with:
           node-version: 18
           registry-url: https://registry.npmjs.org
-      - name: Release check
-        uses: cycjimmy/semantic-release-action@v4
+      - uses: cycjimmy/semantic-release-action@v4
         with:
           extra_plugins: |
             @semantic-release/git
