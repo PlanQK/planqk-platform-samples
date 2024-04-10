@@ -1,4 +1,4 @@
-name: python-starter-ionq
+name: python-starter-aws
 channels:
   - conda-forge
 dependencies:

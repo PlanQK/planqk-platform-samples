@@ -1,16 +1,20 @@
 """
 Template for implementing services running on the PlanQK platform
 """
+
 import time
+from typing import Any, Dict, Union
+
 from loguru import logger
 from planqk.qiskit import PlanqkQuantumProvider
 from qiskit import QuantumCircuit, transpile
-from typing import Dict, Any, Union
 
-from .libs.return_objects import ResultResponse, ErrorResponse
+from .libs.return_objects import ErrorResponse, ResultResponse
 
 
-def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[ResultResponse, ErrorResponse]:
+def run(
+    data: Dict[str, Any] = None, params: Dict[str, Any] = None
+) -> Union[ResultResponse, ErrorResponse]:
     """
     Default entry point of your code. Start coding here!
 
@@ -23,11 +27,11 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
     """
 
     # defines the range of random numbers between 0 and 2^n_bits - 1
-    n_bits: int = data.get('n_bits', 2)
+    n_bits: int = data.get("n_bits", 2)
     # defines whether to use a simulator or a real quantum computer
-    use_simulator: bool = params.get('use_simulator', True)
+    use_simulator: bool = params.get("use_simulator", True)
     # defines whether to use the maximum number of shots available for a selected backend
-    use_max_shots: bool = params.get('use_max_shots', False)
+    use_max_shots: bool = params.get("use_max_shots", False)
 
     # initialize PlanQK provider
     # use next line if you are using the PlanQK CLI and have logged-in with "planqk login"
@@ -41,7 +45,6 @@ def run(data: Dict[str, Any] = None, params: Dict[str, Any] = None) -> Union[Res
         # simulation backends from AWS Braket
         backend_name = "aws.sim.sv1"
         # backend_name = "aws.sim.dm1"
-        # backend_name = "aws.sim.tn1"
 
     else:
         # AWS Braket backends
