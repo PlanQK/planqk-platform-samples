@@ -1,4 +1,4 @@
-# python-starter-dwave-ide
+# dwave-ide
 
 This example is prepared to be run locally in your IDE or from command-line.
 The program code in this example only contains PlanQK authentication credentials, i.e., a PlanQK personal access token.
