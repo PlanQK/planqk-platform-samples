@@ -6,10 +6,10 @@ import time
 from typing import Any
 
 from loguru import logger
+from mqt.bench import get_benchmark
 from mqt.ddsim import DDSIMProvider
 from mqt.qcec import verify
 from mqt.qmap import compile
-from qiskit import QuantumCircuit
 from qiskit.providers.fake_provider import Fake5QV1
 
 from .libs.return_objects import ErrorResponse, ResultResponse
@@ -25,13 +25,8 @@ def run(data: dict[str, Any] | None = None, params: dict[str, Any] | None = None
     Returns:
         response: Response as arbitrary json-serializable dict or an error to be passed back to the client
     """
-    # Create a circuit using Qiskit, for example the following circuit:
-    qc = QuantumCircuit(4, name="ghz")
-    qc.h(0)
-    qc.cx(0, 1)
-    qc.cx(0, 2)
-    qc.cx(0, 3)
-    qc.measure_all()
+    # Get a benchmark from the MQT Bench benchmark suite
+    qc = get_benchmark(benchmark_name="ghz", circuit_size=4, level="alg")
 
     # Simulate the circuit using one of the simulators offered by DDSIM
     provider = DDSIMProvider()
