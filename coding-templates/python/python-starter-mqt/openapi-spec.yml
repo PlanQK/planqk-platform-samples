@@ -37,7 +37,7 @@ components:
           type: string
         status:
           type: string
-          enum: [ UNKNOWN, PENDING, RUNNING, SUCCEEDED, CANCELLED, FAILED ]
+          enum: [UNKNOWN, PENDING, RUNNING, SUCCEEDED, CANCELLED, FAILED]
         createdAt:
           type: string
         startedAt:
