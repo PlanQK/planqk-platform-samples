@@ -1,0 +1,12 @@
+{
+    "mode": "train",
+    "num_channels_conv1": 10,
+    "num_channels_conv2": 10,
+    "linear_layer_size": 20,
+    "batch_size": 32,
+    "device": "cuda",
+    "loss_fn": "CrossEntropyLoss",
+    "learning_rate": 0.001,
+    "optimizer": "Adam",
+    "epochs:": 1
+}
