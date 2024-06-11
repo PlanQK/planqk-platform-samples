@@ -22,8 +22,16 @@
         "vscode": {
             "extensions": [
                 "ms-toolsai.jupyter",
-                "ms-python.python"
-            ]
+                "ms-python.python",
+                "ms-python.black-formatter",
+                "ms-python.isort",
+                "esbenp.prettier-vscode"
+            ],
+            "settings": {
+                "[python]": {
+                    "editor.defaultFormatter": "ms-python.black-formatter"
+                }
+            }
         }
     },
 
