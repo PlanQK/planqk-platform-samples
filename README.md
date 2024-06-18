@@ -1,6 +1,6 @@
 # PROJECT MOVED TO GITLAB
 
-**NOTICE:** This project is no longer maintained on GitHub. It has been moved to GitLab for continued updates and development. You can find the latest version of this project at [https://gitlab.com/planqk-foss/planqk-platform-samples](https://gitlab.com/planqk-foss/planqk-platform-samples).
+**NOTICE:** This project is no longer maintained on GitHub. It has been moved to GitLab for continued updates and development. You can find the latest version of this project at [https://gitlab.com/planqk-foss/planqk-samples](https://gitlab.com/planqk-foss/planqk-samples).
 
 ---
 
